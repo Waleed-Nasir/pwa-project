@@ -31,7 +31,7 @@ export default class Footer extends React.Component {
                     <div className="container"> 
                         <div className="row"> 
                             <div className="col-md-6 col-lg-6"> 
-                                <p className="copyright">Copyright 2019 © all rights by EnvyTheme</p>
+                                <p className="copyright">Copyright 2019 © all rights by Houseit</p>
                             </div>
                             <div className="col-md-6 col-lg-6"> 
                                 <ul className="social-links"> 

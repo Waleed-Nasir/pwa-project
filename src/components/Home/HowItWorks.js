@@ -42,7 +42,7 @@ class HowItWorks extends React.Component {
                                 <ReactWOW delay='0.4s' animation='fadeInUp'>
                                     <div className="single-hiw-feature"> 
                                         <i className="icofont icofont-test-tube-alt"></i>
-                                        <h4>Face Testing</h4>
+                                        <h4>Search Home</h4>
                                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
                                     </div>
                                 </ReactWOW>
@@ -50,7 +50,7 @@ class HowItWorks extends React.Component {
                                 <ReactWOW delay='0.5s' animation='fadeInUp'>
                                     <div className="single-hiw-feature"> 
                                         <i className="icofont-chart-histogram-alt"></i>
-                                        <h4>Data Analysis</h4>
+                                        <h4>Take and Sale for Rent</h4>
                                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
                                     </div>
                                 </ReactWOW>

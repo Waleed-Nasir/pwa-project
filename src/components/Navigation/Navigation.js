@@ -1,6 +1,9 @@
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react';
+import houseit from '../../images/Houseit-logo/houseit.png'
+import icon from '../../images/Houseit-logo/houseit-icon.png'
+
 class Navigation extends React.Component {
     _isMounted = false;
 
@@ -26,7 +29,7 @@ class Navigation extends React.Component {
         });
         window.scrollTo(0, 0);
 
-        if (!(window.location.pathname === '/details-one' || window.location.pathname === '/details-two' || window.location.pathname === '/blog-one' || window.location.pathname === '/blog-two' || window.location.pathname === '/blog-three')){
+        if (!(window.location.pathname === '/details' || window.location.pathname === '/properties' || window.location.pathname === '/registry' || window.location.pathname === '/blog-two' || window.location.pathname === '/blog-three')){
             let mainNavLinks = document.querySelectorAll("nav ul li a");
             
             window.addEventListener("scroll", () => {
@@ -81,7 +84,7 @@ class Navigation extends React.Component {
                             </a>
                         </Link>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <Link href="/">
                             <a
                                 onClick={this.toggleNavbar} 
@@ -112,7 +115,7 @@ class Navigation extends React.Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link href="/">
+                        <Link href="/registry">
                             <a
                                 onClick={this.toggleNavbar} 
                                 className="nav-link" 
@@ -120,7 +123,7 @@ class Navigation extends React.Component {
                                 Faqs
                             </a>
                         </Link>
-                    </li>
+                    </li> */}
                     <li className="nav-item">
                         <Link href="/">
                             <a
@@ -141,6 +144,16 @@ class Navigation extends React.Component {
                             </a>
                         </Link>
                     </li>
+                    <li className="nav-item">
+                        <Link href="/registry">
+                            <a
+                                onClick={this.toggleNavbar} 
+                                className="nav-link" 
+                            >
+                                LogIn / Register
+                            </a>
+                        </Link>
+                    </li> 
                 </ul>
             );
         }
@@ -167,7 +180,7 @@ class Navigation extends React.Component {
                         About
                     </AnchorLink>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <AnchorLink 
                         onClick={this.toggleNavbar} 
                         offset={() => -30} 
@@ -206,7 +219,7 @@ class Navigation extends React.Component {
                     >
                         Faqs
                     </AnchorLink>
-                </li>
+                </li> */}
                 <li className="nav-item">
                     <AnchorLink 
                         onClick={this.toggleNavbar} 
@@ -227,6 +240,16 @@ class Navigation extends React.Component {
                         Contact
                     </AnchorLink>
                 </li>
+                <li className="nav-item">
+                <AnchorLink 
+                        onClick={this.toggleNavbar} 
+                        offset={() => -30} 
+                        className="nav-link" 
+                        href="#contact"
+                    >
+                                LogIn / Register
+                            </AnchorLink>
+                </li> 
             </ul>
         );
     }
@@ -236,10 +259,11 @@ class Navigation extends React.Component {
         const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
         const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
         return(
-            <nav id="navbar" className="navbar fixed-top navbar-expand-md navbar-light top-menu">
+            <nav id="navbar" className={"navbar fixed-top navbar-expand-md navbar-light top-menu"}>
                 <div className="container">
-                    <a className="navbar-brand" href="/">
-                        Jibo
+                   <a className="navbar-brand" href="/">
+                    <img src={icon} width="40px"/>
+                    <img src={houseit} width="120px"/>
                     </a>
 
                     <button 

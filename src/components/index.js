@@ -18,34 +18,35 @@ import Contact from './Common/Contact';
 import Footer from './Common/Footer';
 import GoTop from './Common/GoTop';
 import React, { Component } from 'react';
+import Layout from './Layout';
 
 class Index extends React.Component {
     render(){
         return(
-            <NoSSR key="1">
-                <Preloader fadeDuration={1000}>
-                    <Navigation />
+            // <NoSSR key="1">
+                // <Preloader fadeDuration={1000}>
+                //     <Navigation />
+                <div>
+
                     <Slider />
-                    <About />
-                    <HowItWorks />
-                    <Features />
+                    {/* <Features /> */}
+                    <Blog />
                     <Counter />
+                    <About />
                     <Screenshots />
                     <Testimonial />
-                    <Pricing />
-                    <Faq />
-                    <Team />
-                    <AppDownload />
-                    <Blog />
+                    <HowItWorks />
+                    {/* <Pricing /> */}
+                    {/* <Faq /> */}
+                    {/* <Team /> */}
+                    {/* <AppDownload /> */}
                     <Contact />
                     <Footer />
                     <GoTop scrollStepInPx="50" delayInMs="16.66" />
-
                     <Placeholder>
                         <Loader />
                     </Placeholder>
-                </Preloader>
-            </NoSSR>
+                    </div>
         );
     }
 }

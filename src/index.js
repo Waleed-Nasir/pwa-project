@@ -9,7 +9,7 @@ const muiTheme = createMuiTheme({
     palette: {
         primary: {
             light: '#ffffff',
-            main: '#fe3847',
+            main: 'rgb(70, 212, 211)',
             dark: '#4a4a4a',
         },
         secondary: {

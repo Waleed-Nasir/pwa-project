@@ -1,6 +1,13 @@
 import OwlCarousel from 'react-owl-carousel3';
 import VisibilitySensor from "react-visibility-sensor";
 import React, { Component } from 'react';
+import S1 from '../../images/web/Photo_3.jpg'
+import S2 from '../../images/web/mike.jpg'
+import S3 from '../../images/web/Photo_2.jpg'
+import S4 from '../../images/web/brina.jpg'
+import S5 from '../../images/web/unsplash.jpg'
+import S6 from '../../images/web/alexandra.jpg'
+
 const options = {
     items: 1,
     nav: true,
@@ -19,19 +26,13 @@ const options = {
 class Slider extends React.Component {
     render() {
         return (
-            <div id="home" className="hompage-slides-wrapper video-bg">
-                <div className="video-area">
-                    <video autoPlay="autolay" loop="loop">
-                        <source src="http://taxify.co/wp-content/uploads/2014/06/file.mp4" type="video/mp4"/> 
-                    </video>
-                </div> 
-
+            <div id="home" className="hompage-slides-wrapper">
                 <OwlCarousel 
                     className="homepage-slides owl-carousel owl-theme"
                     {...options}
                 >
                     {this.props.slideData.map((data, idx) => (
-                        <div className="single-slider-item" key={idx}>
+                        <div className="single-slider-item slider-item-img-bg" key={idx}>
                             <div className="slide-item-table">
                                 <div className="slide-item-tablecell">
                                     <div className="container">
@@ -48,17 +49,17 @@ class Slider extends React.Component {
                                                             >
                                                                 { data.heading }
                                                             </h1>
-                                                            <p
+                                                            {/* <p
                                                                 className={
                                                                     isVisible
                                                                         ? "animated fadeInUp slow opacityOne" : ''
                                                                 }
                                                             >
                                                                 { data.text }
-                                                            </p>
+                                                            </p> */}
                                                             
                                                             <div className="slide-button">
-                                                                <a 
+                                                                {/* <a 
                                                                     href="#" 
                                                                     className={`
                                                                         slide-btn-white mr-10 ${isVisible ? "animated fadeInDown slow opacityOne" : ""}
@@ -66,7 +67,7 @@ class Slider extends React.Component {
                                                                 >
                                                                     <i className="icofont-cloud-download"></i> 
                                                                     Download
-                                                                </a>
+                                                                </a> */}
                                                                 <a 
                                                                     href="#" 
                                                                     className={`
@@ -83,7 +84,7 @@ class Slider extends React.Component {
                                             
                                             <div className="col-md-12 col-lg-5">
                                                 <div className="welcome-phone">
-                                                    <img src={require("../../images/app-mockup-1.png")} alt="App Mockup image" />
+                                                    <img src={data.lmage} alt="App Mockup image" />
                                                 </div>
                                             </div>
                                         </div>
@@ -101,12 +102,35 @@ class Slider extends React.Component {
 Slider.defaultProps = {
     slideData: [
         {
-            heading: "Manage all of your Stuff Using a Jibo",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            heading: "Find your  new home or rent it out secure, from anywhere.",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            lmage:S2
         },
         {
-            heading: "Awesome Jibo Mobile App",
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            heading: "Find your  new home or rent it out secure, from anywhere.",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            lmage:S1
+        }
+        ,
+        {
+            heading: "Find your  new home or rent it out secure, from anywhere.",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            lmage:S3
+        },
+        {
+            heading: "Find your  new home or rent it out secure, from anywhere.",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            lmage:S4
+        },
+        {
+            heading: "Find your  new home or rent it out secure, from anywhere.",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            lmage:S5
+        },
+        {
+            heading: "Find your  new home or rent it out secure, from anywhere.",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            lmage:S6
         }
     ]
 }

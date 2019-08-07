@@ -41,7 +41,7 @@ export default class Counter extends React.Component {
                             <ReactWOW delay='0.6s' animation='fadeInUp'>
                                 <div className="counter-box"> 
                                     <i className="icofont-cloud-download"></i>
-                                    <p>App Downloads</p>
+                                    <p>Houses</p>
                                     <h3 className="counter-number">7899</h3>
                                 </div>
                             </ReactWOW>

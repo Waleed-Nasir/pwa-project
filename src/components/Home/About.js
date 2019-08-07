@@ -21,7 +21,7 @@ class About extends React.Component {
                         <div className="col-lg-7"> 
                             <ReactWOW delay='0.6s' animation='fadeInUp'>
                                 <div className="app-about-text"> 
-                                    <h3>Best Mobile App</h3>
+                                    <h3>Best way to find your new Home</h3>
                                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p> 
                                     <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
                                     
@@ -42,7 +42,7 @@ class About extends React.Component {
                         <div className="col-lg-5"> 
                             <ReactWOW delay='0.9s' animation='fadeInUp'>
                                 <div className="text-center"> 
-                                    <img src={require("../../images/app-about.jpg")} alt="App About Image" />
+                                    <img src={require("../../images/web/Photo_1.jpg")} alt="App About Image" />
                                 </div>
                             </ReactWOW>
                         </div>
