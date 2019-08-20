@@ -29,20 +29,20 @@ class Index extends React.Component {
                 <div>
 
                     <Slider />
-                    {/* <Features /> */}
+                    <Features />
                     <Blog />
                     <Counter />
                     <About />
                     <Screenshots />
                     <Testimonial />
-                    <HowItWorks />
+                    {/* <HowItWorks /> */}
                     {/* <Pricing /> */}
                     {/* <Faq /> */}
                     {/* <Team /> */}
                     {/* <AppDownload /> */}
                     <Contact />
                     <Footer />
-                    <GoTop scrollStepInPx="50" delayInMs="16.66" />
+                    {/* <GoTop scrollStepInPx="50" delayInMs="16.66" /> */}
                     <Placeholder>
                         <Loader />
                     </Placeholder>

@@ -919,15 +919,15 @@ section {
         opacity: 1;
     }
     .feature-icon {
-        -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-        clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        // -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        // clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
         color: #ffffff;
         font-size: 25px;
-        height: 60px;
+        height: 150px;
         line-height: 60px;
         margin: auto;
         text-align: center;
-        width: 60px;
+        width: 100%;
     }
     h4 {
         margin: 30px 0 10px;

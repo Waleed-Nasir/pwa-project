@@ -18,7 +18,7 @@ export default class Features extends React.Component {
                     </div>
                     
                     <div className="row"> 
-                        <div className="col-md-6 col-lg-4"> 
+                        <div className="col-sm-6 col-md-4 col-lg-3"> 
                             <ReactWOW delay='0.4s' animation='fadeInUp'>
                                 <div className="single-feature"> 
                                     <div className="feature-icon">
@@ -30,7 +30,7 @@ export default class Features extends React.Component {
                             </ReactWOW>
                         </div>
             
-                        <div className="col-md-6 col-lg-4"> 
+                        <div className="col-sm-6 col-md-4 col-lg-3"> 
                             <ReactWOW delay='0.5s' animation='fadeInUp'>
                                 <div className="single-feature"> 
                                     <div className="feature-icon">
@@ -42,7 +42,7 @@ export default class Features extends React.Component {
                             </ReactWOW>
                         </div>
                         
-                        <div className="col-md-6 col-lg-4"> 
+                        <div className="col-sm-6 col-md-4 col-lg-3"> 
                             <ReactWOW delay='0.6s' animation='fadeInUp'>
                                 <div className="single-feature"> 
                                     <div className="feature-icon">
@@ -53,8 +53,19 @@ export default class Features extends React.Component {
                                 </div>
                             </ReactWOW>
                         </div>
-                        
-                        <div className="col-md-6 col-lg-4"> 
+                        <div className="col-sm-6 col-md-4 col-lg-3"> 
+                            <ReactWOW delay='0.8s' animation='fadeInUp'>
+                                <div className="single-feature"> 
+                                    <div className="feature-icon">
+                                        <i className="icofont-eye"></i>
+                                    </div>
+                                    <h4>RETINA READY</h4>
+                                    <p>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                </div>
+                            </ReactWOW>
+                        </div>
+{/*                         
+                        <div className="col-sm-6 col-md-4 col-lg-3"> 
                             <ReactWOW delay='0.7s' animation='fadeInUp'>
                                 <div className="single-feature"> 
                                     <div className="feature-icon">
@@ -66,7 +77,7 @@ export default class Features extends React.Component {
                             </ReactWOW>
                         </div>
                         
-                        <div className="col-md-6 col-lg-4"> 
+                        <div className="col-sm-6 col-md-4 col-lg-3"> 
                             <ReactWOW delay='0.8s' animation='fadeInUp'>
                                 <div className="single-feature"> 
                                     <div className="feature-icon">
@@ -78,7 +89,7 @@ export default class Features extends React.Component {
                             </ReactWOW>
                         </div>
                         
-                        <div className="col-md-6 col-lg-4"> 
+                        <div className="col-sm-6 col-md-4 col-lg-3"> 
                             <ReactWOW delay='0.9s' animation='fadeInUp'>
                                 <div className="single-feature"> 
                                     <div className="feature-icon">
@@ -88,7 +99,7 @@ export default class Features extends React.Component {
                                     <p>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
                                 </div>
                             </ReactWOW>
-                        </div>
+                        </div> */}
                     </div>
                 </div> 
             </section>

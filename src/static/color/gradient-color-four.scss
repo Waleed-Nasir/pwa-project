@@ -19,6 +19,7 @@ $primary-color-four: #00c9fd;
     background: -o-linear-gradient(right, $gradient-color-left-bg-four, $gradient-color-right-bg-four);
     background: -moz-linear-gradient(right, $gradient-color-left-bg-four, $gradient-color-right-bg-four);
     background: linear-gradient(to right, $gradient-color-left-bg-four, $gradient-color-right-bg-four);
+    color: white !important;
     &:hover {
         box-shadow: 0 0 10px $primary-color-four;
     }
