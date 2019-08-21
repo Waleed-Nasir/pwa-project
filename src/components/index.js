@@ -30,11 +30,11 @@ class Index extends React.Component {
 
                     <Slider />
                     <Features />
-                    <Blog />
+                    {/* <Blog /> */}
                     <Counter />
                     <About />
-                    <Screenshots />
-                    <Testimonial />
+                    {/* <Screenshots /> */}
+                    {/* <Testimonial /> */}
                     {/* <HowItWorks /> */}
                     {/* <Pricing /> */}
                     {/* <Faq /> */}

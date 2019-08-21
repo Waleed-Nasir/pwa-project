@@ -29,9 +29,9 @@ class Navigation extends React.Component {
         });
         window.scrollTo(0, 0);
 
-        if (!(window.location.pathname === '/details' || window.location.pathname === '/properties' || window.location.pathname === '/registry' || window.location.pathname === '/blog-two' || window.location.pathname === '/blog-three')){
+        // if (!(window.location.pathname === '/details' || window.location.pathname === '/properties' || window.location.pathname === '/registry' || window.location.pathname === '/blog-two' || window.location.pathname === '/blog-three')){
             let mainNavLinks = document.querySelectorAll("nav ul li a");
-            
+         if(false){   
             window.addEventListener("scroll", () => {
                 let fromTop = window.scrollY;
             
