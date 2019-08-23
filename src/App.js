@@ -14,6 +14,7 @@ import Layout from './components/Layout';
 import DetailsOne from './components/Details/details-one';
 import Blog from './components/Blog/blog-three';
 import Registry from './components/Registry/Register';
+import Profile from './components/Home/Profile';
 class App extends Component {
   render() {
     return (
@@ -25,6 +26,7 @@ class App extends Component {
             <Route exact path="/details" component={DetailsOne}  {...this.props} />
             <Route exact path="/properties" component={Blog}  {...this.props} />
             <Route exact path="/registry" component={Registry}  {...this.props} />
+            <Route exact path="/profile" component={Profile}  {...this.props} />
 
           </div>
         </Router>
