@@ -21,7 +21,7 @@ class Navigation extends React.Component {
         this._isMounted = true;
         let elementId = document.getElementById("navbar");
         document.addEventListener("scroll", () => {
-            if (window.scrollY > 170) {
+            if (window.scrollY > 100) {
                 elementId.classList.add("menu-shrink");
             } else {
                 elementId.classList.remove("menu-shrink");
