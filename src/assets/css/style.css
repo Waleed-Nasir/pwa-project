@@ -1398,7 +1398,7 @@ section {
 /* End app screenshots section */
 /* Testimonial section style */
 .testimonial-section {
-  background-image: url("../../images/testimonial-bg.jpg");
+  background-image: url("../../images/images/meanLogo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -1430,7 +1430,7 @@ section {
 }
 
 #testimonial.angle-testimonial-section::before {
-  background-image: url("../../images/testimonial-bg.jpg");
+  background-image: url("../../images/meanLogo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
