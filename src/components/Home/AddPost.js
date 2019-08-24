@@ -1,19 +1,81 @@
 import OwlCarousel from 'react-owl-carousel3';
 import React, { Component } from 'react';
 import Uploader from './Uploader';
+import NoImage from '../../images/NoImage.jpg'
 
+const options = {
+    items: 1,
+    nav: false,
+    dots: false,
+    autoplay: true,
+    margin: 40,
+    smartSpeed: 500,
+    autoplayHoverPause: true,
+    loop: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+    }
+}
 
 
 export default class Profile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          files: [],
+          imagesPreviewUrls: []
+        }
+    }
+    getUploadContent=(file,reader)=>{
+        this.setState(prevState => ({
+            files: [...prevState.files, file],
+            imagesPreviewUrls: [...prevState.imagesPreviewUrls, reader]
+        }));
+    }
     render() {
+        const {imagesPreviewUrls} = this.state
+        console.log(imagesPreviewUrls)
+
         return (
             <section id="testimonial" className="testimonial-section ">
                 <div className="container">
                     <div className="row mt-5">
-                        <div className="col-lg-4">
-                            <div className="testimonial-item" style={{ zIndex: 10 }}>
+                        <div className="col-lg-4" style={{ zIndex: 10 }}>
+                            <div className="contact-form" >
                         <h4>Post will be like this</h4>
-                                <i className="icofont-quote-left"></i>
+                        <div className="single-feature"> 
+                                    <div className="feature-icon">
+                                    <OwlCarousel 
+                                className="testimonial-carousel owl-carousel owl-theme"
+                                {...options}
+                            >
+                                 {imagesPreviewUrls&&imagesPreviewUrls.length>0?imagesPreviewUrls.map((imagePreviewUrl, i)=>{
+                                     if(imagePreviewUrl.includes(':video/')){
+                                        return <video className="feature-icon"  src={imagePreviewUrl} height="60px !important" loop autoPlay></video>
+                                     }else
+                                         {return  <img className="feature-icon" src={imagePreviewUrl}  height="60px !important"/>}
+                             }):<img className="feature-icon" src={NoImage}/>}
+                              
+                            </OwlCarousel>
+                                        <div className="post-profile">
+                                            <img  src={require("../../images/client/1.png")} alt="client Image"  height="60px !important"/>
+                                        </div>
+                                    </div>
+                                    <h4>Highly Dec</h4>
+                                    <p className="post-discription">There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                    <div className="post-containre">
+                                        <span className="about-post">Owner :&nbsp;&nbsp; Alisa Match</span>
+                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 4</span>
+                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 444$</span>
+                                    </div>
+                                        <div className="default-button" style={{height:30,paddingTop:5,cursor: 'pointer'}}>
+                                        {/* <i className="icofont-cloud-download"></i>  */}
+                                      view
+                                    </div>
+                                </div>
+                                {/* <i className="icofont-quote-left"></i>
                                 <p className="description">
                                     <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros.</q>
                                 </p>
@@ -23,7 +85,7 @@ export default class Profile extends React.Component {
                                     </div>
                                     <h3 className="title">Tareq</h3>
                                     <span className="post">UI / UX Designer</span>
-                                </div>
+                                </div> */}
                             </div>
 
                         </div>
@@ -218,7 +280,7 @@ export default class Profile extends React.Component {
                                         />
                                         <div className="help-block with-errors">Optional</div>
                                     </div>
-                                    <Uploader/>
+                                    <Uploader getUploadContent={this.getUploadContent}/>
                                     <div className="text-center">
                                         <button type="submit" className="default-button">
                                             Update

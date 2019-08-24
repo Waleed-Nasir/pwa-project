@@ -1,4 +1,5 @@
 import ReactWOW from 'react-wow';
+import OwlCarousel from 'react-owl-carousel3';
 import React, { Component } from 'react';
 import S1 from '../../images/web/s1.jpg'
 import S2 from '../../images/web/mike.jpg'
@@ -6,6 +7,34 @@ import S3 from '../../images/web/Photo_2.jpg'
 import S4 from '../../images/web/s2.jpg'
 import S5 from '../../images/web/s3.jpg'
 import S6 from '../../images/web/s4.jpg'
+const options = {
+    nav: true,
+    margin: 30,
+    dots: true,
+    autoplay: true,
+    autoplayHoverPause: true,
+    smartSpeed: 500,
+    loop: false,
+    navText: [
+        "<i class='icofont-swoosh-left'></i>", 
+        "<i class='icofont-swoosh-right'></i>"
+    ],
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 2
+        },
+        768: {
+            items: 3
+        },
+        1200: {
+            items: 4
+        }
+    }
+}
+
 export default class Features extends React.Component {
     render() {
         return (
@@ -23,100 +52,148 @@ export default class Features extends React.Component {
                     </div>
                     
                     <div className="row"> 
-                        <div className="col-sm-6 col-md-4 col-lg-3"> 
-                            <ReactWOW delay='0.4s' animation='fadeInUp'>
+                            <div className="col-lg-12"> 
+                                <OwlCarousel 
+                                    className="screenshot-carousel owl-carousel owl-theme"
+                                    {...options}
+                                >
+                                     <div className="single-feature"> 
+                                    <div className="feature-icon">
+                                        <img className="feature-icon" src={S2}/>
+                                        <div className="post-profile">
+                                            <img src={S1} alt="client Image"  height="60px !important"/>
+                                        </div>
+                                    </div>
+                                    <h4>Highly Dec</h4>
+                                    <p className="post-discription">There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                    <div className="post-containre">
+                                        <span className="about-post">Owner :&nbsp;&nbsp; Alisa Match</span>
+                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 4</span>
+                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 444$</span>
+                                    </div>
+                                        <div className="default-button" style={{height:30,paddingTop:5,cursor: 'pointer'}}>
+                                        {/* <i className="icofont-cloud-download"></i>  */}
+                                      view
+                                    </div>
+                                </div>
                                 <div className="single-feature"> 
                                     <div className="feature-icon">
                                         <img className="feature-icon" src={S2}/>
-                                        {/* <i className="icofont-sun"></i> */}
                                         <div style={{width:60,height:60,position:'absolute',marginTop:-35,marginLeft:15}}>
                                             <img src={S1} alt="client Image"  height="60px !important"/>
                                         </div>
                                     </div>
-                                    <h4>High Resolution</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                    <h4>Highly Dec</h4>
+                                    <p style={{  
+                                          width:' 100%',
+                                        maxHeight:' 85px',
+                                        lineHeight:' 12px',
+                                        minHeight:' 30px',
+                                        textOverflow:' ellipsis',
+                                        overflow:' hidden',
+                                        whiteSpace:'pre-wrap',
+                                        textAlign: 'left'}}>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                    <div style={{width:'100%',minHeight:100,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-start'}}>
+                                        <span className="about-post">Owner :&nbsp;&nbsp; Alisa Match</span>
+                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 4</span>
+                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 444$</span>
+                                    </div>
+                                        <div className="default-button" style={{height:30,paddingTop:5,cursor: 'pointer'}}>
+                                        {/* <i className="icofont-cloud-download"></i>  */}
+                                      view
+                                    </div>
                                 </div>
-                            </ReactWOW>
-                        </div>
+                                <div className="single-feature"> 
+                                    <div className="feature-icon">
+                                        <img className="feature-icon" src={S2}/>
+                                        <div style={{width:60,height:60,position:'absolute',marginTop:-35,marginLeft:15}}>
+                                            <img src={S1} alt="client Image"  height="60px !important"/>
+                                        </div>
+                                    </div>
+                                    <h4>Highly Dec</h4>
+                                    <p style={{  
+                                          width:' 100%',
+                                        maxHeight:' 85px',
+                                        lineHeight:' 12px',
+                                        minHeight:' 30px',
+                                        textOverflow:' ellipsis',
+                                        overflow:' hidden',
+                                        whiteSpace:'pre-wrap',
+                                        textAlign: 'left'}}>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                    <div style={{width:'100%',minHeight:100,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-start'}}>
+                                        <span className="about-post">Owner :&nbsp;&nbsp; Alisa Match</span>
+                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 4</span>
+                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 444$</span>
+                                    </div>
+                                        <div className="default-button" style={{height:30,paddingTop:5,cursor: 'pointer'}}>
+                                        {/* <i className="icofont-cloud-download"></i>  */}
+                                      view
+                                    </div>
+                                </div>
+                                <div className="single-feature"> 
+                                    <div className="feature-icon">
+                                        <img className="feature-icon" src={S2}/>
+                                        <div style={{width:60,height:60,position:'absolute',marginTop:-35,marginLeft:15}}>
+                                            <img src={S1} alt="client Image"  height="60px !important"/>
+                                        </div>
+                                    </div>
+                                    <h4>Highly Dec</h4>
+                                    <p style={{  
+                                          width:' 100%',
+                                        maxHeight:' 85px',
+                                        lineHeight:' 12px',
+                                        minHeight:' 30px',
+                                        textOverflow:' ellipsis',
+                                        overflow:' hidden',
+                                        whiteSpace:'pre-wrap',
+                                        textAlign: 'left'}}>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                    <div style={{width:'100%',minHeight:100,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-start'}}>
+                                        <span className="about-post">Owner :&nbsp;&nbsp; Alisa Match</span>
+                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 4</span>
+                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 444$</span>
+                                    </div>
+                                        <div className="default-button" style={{height:30,paddingTop:5,cursor: 'pointer'}}>
+                                        {/* <i className="icofont-cloud-download"></i>  */}
+                                      view
+                                    </div>
+                                </div>
+                                <div className="single-feature"> 
+                                    <div className="feature-icon">
+                                        <img className="feature-icon" src={S2}/>
+                                        <div style={{width:60,height:60,position:'absolute',marginTop:-35,marginLeft:15}}>
+                                            <img src={S1} alt="client Image"  height="60px !important"/>
+                                        </div>
+                                    </div>
+                                    <h4>Highly Dec</h4>
+                                    <p style={{  
+                                          width:' 100%',
+                                        maxHeight:' 85px',
+                                        lineHeight:' 12px',
+                                        minHeight:' 30px',
+                                        textOverflow:' ellipsis',
+                                        overflow:' hidden',
+                                        whiteSpace:'pre-wrap',
+                                        textAlign: 'left'}}>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                    <div style={{width:'100%',minHeight:100,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-start'}}>
+                                        <span className="about-post">Owner :&nbsp;&nbsp; Alisa Match</span>
+                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 4</span>
+                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 444$</span>
+                                    </div>
+                                        <div className="default-button" style={{height:30,paddingTop:5,cursor: 'pointer'}}>
+                                        {/* <i className="icofont-cloud-download"></i>  */}
+                                      view
+                                    </div>
+                                </div>
+                                </OwlCarousel>
+                            </div>
+                        {/* <div className="col-lg-12"> 
+                         
+           
+                            {/* </ReactWOW> */}
             
-                        <div className="col-sm-6 col-md-4 col-lg-3"> 
-                            <ReactWOW delay='0.5s' animation='fadeInUp'>
-                                <div className="single-feature"> 
-                                    <div className="feature-icon">
-                                        <img className="feature-icon" src={S3}/>
-                                        {/* <i className="icofont-light-bulb"></i> */}
-                                    </div>
-                                    <h4>Unique Design</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
                         
-                        <div className="col-sm-6 col-md-4 col-lg-3"> 
-                            <ReactWOW delay='0.6s' animation='fadeInUp'>
-                                <div className="single-feature"> 
-                                    <div className="feature-icon">
-                                        <img className="feature-icon" src={S3}/>
-                                        {/* <i className="icofont-imac"></i> */}
-                                    </div>
-                                    <h4>Full Responsive</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-                        <div className="col-sm-6 col-md-4 col-lg-3"> 
-                            <ReactWOW delay='0.8s' animation='fadeInUp'>
-                                <div className="single-feature"> 
-                                    <div className="feature-icon">
-                                        <img className="feature-icon" src={S4}/>
-                                        {/* <i className="icofont-eye"></i> */}
-                                    </div>
-                                    <h4>RETINA READY</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-{/*                         
-                        <div className="col-sm-6 col-md-4 col-lg-3"> 
-                            <ReactWOW delay='0.7s' animation='fadeInUp'>
-                                <div className="single-feature"> 
-                                    <div className="feature-icon">
-                                        <img className="feature-icon" src={S3}/>  
-                                    // <i className="icofont-code-alt"></i>
-                                    </div>
-                                    <h4>CLEAN CODES</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-                        
-                        <div className="col-sm-6 col-md-4 col-lg-3"> 
-                            <ReactWOW delay='0.8s' animation='fadeInUp'>
-                                <div className="single-feature"> 
-                                    <div className="feature-icon">
-                                        <img className="feature-icon" src={S3}/>  
-                                    // <i className="icofont-eye"></i>
-                                    </div>
-                                    <h4>RETINA READY</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                </div>
-                            </ReactWOW>
-                        </div>
-                        
-                        <div className="col-sm-6 col-md-4 col-lg-3"> 
-                            <ReactWOW delay='0.9s' animation='fadeInUp'>
-                                <div className="single-feature"> 
-                                    <div className="feature-icon">
-                                        <img className="feature-icon" src={S3}/>  
-                                    // <i className="icofont-space-shuttle"></i>
-                                    </div>
-                                    <h4>UNLIMITED FEATURES</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                </div>
-                            </ReactWOW>
-                        </div> */}
                     </div>
-                    <a href="#app-download" className="default-button">
+                    <a href="#" className="default-button">
                                         {/* <i className="icofont-cloud-download"></i>  */}
                                        See More...
                                     </a>

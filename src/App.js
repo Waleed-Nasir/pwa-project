@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Index from './components';
 import Layout from './components/Layout';
 import DetailsOne from './components/Details/details-one';
+import Detailstwo from './components/Details/details-two';
 import Blog from './components/Blog/blog-three';
 import Registry from './components/Registry/Register';
 import Profile from './components/Home/Profile';
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/" component={Index} {...this.props} />
             <Route exact path="/details" component={DetailsOne}  {...this.props} />
             <Route exact path="/properties" component={Blog}  {...this.props} />
+            <Route exact path="/findhome" component={Detailstwo}  {...this.props} />
             <Route exact path="/registry" component={Registry}  {...this.props} />
             <Route exact path="/profile" component={Profile}  {...this.props} />
             <Route exact path="/addpost" component={AddPost}  {...this.props} />

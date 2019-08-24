@@ -18,10 +18,11 @@ class Uploader extends Component {
           let reader = new FileReader();
 
           reader.onloadend = () => {
+              this.props.getUploadContent(file,reader.result)
               this.setState(prevState => ({
-                  files: [...prevState.files, file],
-                  imagesPreviewUrls: [...prevState.imagesPreviewUrls, reader.result]
-              }));
+                files: [...prevState.files, file],
+                imagesPreviewUrls: [...prevState.imagesPreviewUrls, reader.result]
+            }));
           }
 
           reader.readAsDataURL(file);

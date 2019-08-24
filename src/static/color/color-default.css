@@ -506,3 +506,15 @@
   color: #6a11cb;
 }
 /*# sourceMappingURL=color-default.css.map */
+.post-profile{
+  width:60;
+  height:60;
+  position:absolute;
+  margin-top:-35;
+  margin-left:15;
+  z-index: 10;
+  background: white;
+  border: 2px #9E9E9E solid;
+  overflow: hidden;
+
+}
