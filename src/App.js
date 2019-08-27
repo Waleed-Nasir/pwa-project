@@ -17,6 +17,7 @@ import Blog from './components/Blog/blog-three';
 import Registry from './components/Registry/Register';
 import Profile from './components/Home/Profile';
 import AddPost from './components/Home/AddPost';
+import Chat from './components/ChatBox/Chat';
 class App extends Component {
   render() {
     return (
@@ -31,6 +32,7 @@ class App extends Component {
             <Route exact path="/registry" component={Registry}  {...this.props} />
             <Route exact path="/profile" component={Profile}  {...this.props} />
             <Route exact path="/addpost" component={AddPost}  {...this.props} />
+            <Route exact path="/chat" component={Chat}  {...this.props} />
 
           </div>
         </Router>
