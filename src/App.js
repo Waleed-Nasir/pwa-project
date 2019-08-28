@@ -18,6 +18,7 @@ import Registry from './components/Registry/Register';
 import Profile from './components/Home/Profile';
 import AddPost from './components/Home/AddPost';
 import Chat from './components/ChatBox/Chat';
+import Peoples from './components/Details/peoples';
 class App extends Component {
   render() {
     return (
@@ -33,6 +34,7 @@ class App extends Component {
             <Route exact path="/profile" component={Profile}  {...this.props} />
             <Route exact path="/addpost" component={AddPost}  {...this.props} />
             <Route exact path="/chat" component={Chat}  {...this.props} />
+            <Route exact path="/peoples" component={Peoples}  {...this.props} />
 
           </div>
         </Router>

@@ -78,6 +78,17 @@ class Navigation extends React.Component {
                     <a
                         onClick={this.toggleNavbar}
                         className="nav-link"
+                        href='/peoples'
+
+                    >
+                      People`s
+                            </a>
+
+                </li>
+                <li className="nav-item">
+                    <a
+                        onClick={this.toggleNavbar}
+                        className="nav-link"
                         href='/findhome'
 
                     >
