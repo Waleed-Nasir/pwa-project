@@ -18,7 +18,7 @@ export default class DetailsOne extends React.Component {
                         <div className="container"> 
                             <div className="row"> 
                                 <div className="col-lg-6"> 
-                                    <h2 className="banner-title">... Details</h2>   
+                                    <h2 className="banner-title">Blog Details With Left Sidebar</h2>   
                                 </div>
                                 <div className="col-lg-6"> 
                                     <ol className="breadcrumb">
@@ -27,7 +27,7 @@ export default class DetailsOne extends React.Component {
                                                 <a>Home</a>
                                             </Link>
                                         </li>
-                                        <li className="active">Add Details</li>
+                                        <li className="active">Blog Details Left Sidebar</li>
                                     </ol>   
                                 </div>
                             </div>
@@ -39,34 +39,17 @@ export default class DetailsOne extends React.Component {
                             <div className="row"> 
                                 <div className="col-md-4 col-lg-4"> 
                                     <div className="blog-sidebar">
-                                                <div className="testimonial-item" style={{zIndex:10,background:'rgb(52, 228, 229)',minHeight:220}}>
-                                                <div className="testimonial-content" style={{zIndex:10,background:'rgb(52, 228, 229)'}}>
-                                                    <div className="pic">
-                                                        <img src={require("../../images/client/1.png")} alt="client Image" />
-                                                    </div>
-                                                    
-                                                    <h3 className="title">Tareq</h3>
-                                                    <span className="post">UI / UX Designer</span>
-                                                    <div className="post-containre" style={{ padding: 15}}>
-
-                                                    <span className="post">Email &nbsp;&nbsp;:&nbsp;&nbsp; Test@mai.com</span>
-                                                    <span className="post">Phone :&nbsp;&nbsp; 123456789</span>
-                                                    <span className="post">Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 23</span>
-                                                    <span className="post">Live in :&nbsp;&nbsp;Pak</span>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
+                                        
+                                        <form className="search-box">
+                                            <input type="text" className="form-control" id="search" name="search" placeholder="Search Post Here..." />
+                                            <button type="submit" className="btn search-btn">
+                                                <i className="icofont-search"></i>
+                                            </button>
+                                        </form>
+                                        
                                         <div className="recent-post">
-                                    
-                                        </div>
-                                        <h4 className="blog-sidebar-title">Post Details</h4>
-                                            <div className="post-containre">
-                                        <span className="about-post">Floors :&nbsp;&nbsp; 1</span>
-                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 3</span>
-                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;400$</span>
-                                    </div>
-                                            {/* <div className="single-recent-post"> 
+                                            <h4 className="blog-sidebar-title">Recent post</h4>
+                                            <div className="single-recent-post"> 
                                                 <Link href="#">
                                                     <a>
                                                         <img src={require("../../images/blog/recent-post-1.jpg")} alt="blog" />
@@ -100,8 +83,10 @@ export default class DetailsOne extends React.Component {
                                                 </Link>
                                                 <h5><a href="#">Eu bibendum dictum ipsum vivamus nostra lectus</a></h5>
                                                 <p>Mar 23, 2019</p>
-                                            </div> */}
-                                        {/* <div className="post-category">
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="post-category">
                                             <h4 className="blog-sidebar-title">Category</h4>
                                             <Link href="#">
                                                 <a className="single-category">Android <span>(05)</span></a> 
@@ -162,8 +147,7 @@ export default class DetailsOne extends React.Component {
                                                 <a>Videos</a>
                                             </Link>
                                         </div>
-                                    </div> */}
-                                </div>
+                                    </div>
                                 </div>
                                 
                                 <div className="col-md-8 col-lg-8"> 

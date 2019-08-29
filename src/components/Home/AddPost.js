@@ -25,7 +25,21 @@ export default class Profile extends React.Component {
         super(props);
         this.state = {
           files: [],
-          imagesPreviewUrls: []
+          imagesPreviewUrls: [],
+          title:'',
+          type:'',
+          slogan:'',
+          rooms:'',
+          floors:'',
+            price:'',
+            country:'',
+            city:'',
+            areaCode:'',
+            address:'',
+            about:'',
+            question:'',
+            email:'',
+            number:''
         }
     }
     getUploadContent=(file,reader)=>{
@@ -34,9 +48,13 @@ export default class Profile extends React.Component {
             imagesPreviewUrls: [...prevState.imagesPreviewUrls, reader]
         }));
     }
+    ChangeHandler=(e)=>{
+        const { name,value } = e.target
+        console.log(name,value)
+        this.setState({[name]:value})
+    }
     render() {
-        const {imagesPreviewUrls} = this.state
-        console.log(imagesPreviewUrls)
+        const {imagesPreviewUrls,title,type,slogan,rooms,floors,price,country,city,areaCode,address,about,question,email,number} = this.state
 
         return (
             <section id="testimonial" className="testimonial-section ">
@@ -63,12 +81,12 @@ export default class Profile extends React.Component {
                                             <img  src={require("../../images/client/1.png")} alt="client Image"  height="60px !important"/>
                                         </div>
                                     </div>
-                                    <h4>Highly Dec</h4>
-                                    <p className="post-discription">There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                    <h4>{title}</h4>
+                                    <p className="post-discription">{slogan}</p>
                                     <div className="post-containre">
                                         <span className="about-post">Owner :&nbsp;&nbsp; Alisa Match</span>
-                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 4</span>
-                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 444$</span>
+                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; {rooms}</span>
+                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{price}</span>
                                     </div>
                                         <div className="default-button" style={{height:30,paddingTop:5,cursor: 'pointer'}}>
                                         {/* <i className="icofont-cloud-download"></i>  */}
@@ -100,10 +118,11 @@ export default class Profile extends React.Component {
                                                     type="text"
                                                     className="form-control"
                                                     required={true}
-                                                    data-error="Please enter your name"
-                                                    placeholder="Your Name"
-                                                // value={this.state.formFields.name}
-                                                // onChange={this.nameChangeHandler}
+                                                    data-error="Please enter your House title"
+                                                    placeholder="Your Post Title"
+                                                    name='title'
+                                                value={title}
+                                                onChange={this.ChangeHandler}
                                                 />
                                                 <div className="help-block with-errors"></div>
                                             </div>
@@ -113,13 +132,49 @@ export default class Profile extends React.Component {
                                             <div className="form-group">
                                                 <label>Hosue For</label>
                                                 <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    required={true}
+                                                    data-error="Please enter hosue for rent / sale"
+                                                    placeholder="Type"
+                                                    name='type'
+                                                value={type}
+                                                onChange={this.ChangeHandler}
+                                                />
+                                                <div className="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-6">
+                                            <div className="form-group">
+                                                <label>Contact Number</label>
+                                                <input
+                                                    type="number"
+                                                    className="form-control"
+                                                    required={true}
+                                                    data-error="Please enter your Number"
+                                                    placeholder="Your Number"
+                                                    name='number'
+                                                value={number}
+                                                onChange={this.ChangeHandler}
+                                                />
+                                                <div className="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+
+                                        <div className="col-lg-6">
+                                            <div className="form-group">
+                                                <label>Email</label>
+                                                <input
                                                     type="email"
                                                     className="form-control"
                                                     required={true}
-                                                    data-error="Please enter your email"
-                                                    placeholder="Email Address"
-                                                // value={this.state.formFields.email}
-                                                // onChange={this.emailChangeHandler}
+                                                    data-error="Please enter Email"
+                                                    placeholder="Email"
+                                                    name='email'
+                                                value={email}
+                                                onChange={this.ChangeHandler}
                                                 />
                                                 <div className="help-block with-errors"></div>
                                             </div>
@@ -131,10 +186,11 @@ export default class Profile extends React.Component {
                                             type="text"
                                             className="form-control"
                                             required={true}
-                                            data-error="Please enter your subject"
-                                            placeholder="Your subject"
-                                        // value={this.state.formFields.subject}
-                                        // onChange={this.subjectChangeHandler}
+                                            data-error="Please enter  Slogan / Tag line"
+                                            placeholder="Slogan / Tag line"
+                                        value={slogan}
+                                        name='slogan'
+                                        onChange={this.ChangeHandler}
                                         />
                                         <div className="help-block with-errors"></div>
                                     </div>
@@ -146,10 +202,11 @@ export default class Profile extends React.Component {
                                                     type="text"
                                                     className="form-control"
                                                     required={true}
-                                                    data-error="Please enter your subject"
-                                                    placeholder="Your subject"
-                                                // value={this.state.formFields.subject}
-                                                // onChange={this.subjectChangeHandler}
+                                                    data-error="Please enter Rooms"
+                                                    placeholder="Rooms in number"
+                                                    name='rooms'
+                                                value={rooms}
+                                                onChange={this.ChangeHandler}
                                                 />
                                                 <div className="help-block with-errors"></div>
                                             </div>
@@ -162,10 +219,11 @@ export default class Profile extends React.Component {
                                                     type="text"
                                                     className="form-control"
                                                     required={true}
-                                                    data-error="Please enter your subject"
-                                                    placeholder="Your subject"
-                                                // value={this.state.formFields.subject}
-                                                // onChange={this.subjectChangeHandler}
+                                                    data-error="Please enter Floor"
+                                                    placeholder="Your House Floor"
+                                                    name='floorS'
+                                                value={floors}
+                                                onChange={this.ChangeHandler}
                                                 />
                                                 <div className="help-block with-errors"></div>
                                             </div>
@@ -178,10 +236,11 @@ export default class Profile extends React.Component {
                                                     type="text"
                                                     className="form-control"
                                                     required={true}
-                                                    data-error="Please enter your subject"
-                                                    placeholder="Your subject"
-                                                // value={this.state.formFields.subject}
-                                                // onChange={this.subjectChangeHandler}
+                                                    data-error="Please enter Price"
+                                                    placeholder="Price"
+                                                    name='price'
+                                                value={price}
+                                                onChange={this.ChangeHandler}
                                                 />
                                                 <div className="help-block with-errors"></div>
                                             </div>
@@ -197,10 +256,11 @@ export default class Profile extends React.Component {
                                                     type="text"
                                                     className="form-control"
                                                     required={true}
-                                                    data-error="Please enter your subject"
-                                                    placeholder="Your subject"
-                                                // value={this.state.formFields.subject}
-                                                // onChange={this.subjectChangeHandler}
+                                                    data-error="Please enter Country"
+                                                    placeholder="Country"
+                                                    name='country'
+                                                value={country}
+                                                onChange={this.ChangeHandler}
                                                 />
                                                 <div className="help-block with-errors"></div>
                                             </div>
@@ -213,10 +273,11 @@ export default class Profile extends React.Component {
                                                     type="text"
                                                     className="form-control"
                                                     required={true}
-                                                    data-error="Please enter your subject"
-                                                    placeholder="Your subject"
-                                                // value={this.state.formFields.subject}
-                                                // onChange={this.subjectChangeHandler}
+                                                    data-error="Please enter City"
+                                                    placeholder="City"
+                                                    name="city"
+                                                value={city}
+                                                onChange={this.ChangeHandler}
                                                 />
                                                 <div className="help-block with-errors"></div>
                                             </div>
@@ -230,10 +291,11 @@ export default class Profile extends React.Component {
                                                     type="text"
                                                     className="form-control"
                                                     required={true}
-                                                    data-error="Please enter your subject"
-                                                    placeholder="Your subject"
-                                                // value={this.state.formFields.subject}
-                                                // onChange={this.subjectChangeHandler}
+                                                    data-error="Please enter your Zip / Postal code"
+                                                    placeholder="Zip / Postal code"
+                                                    name='areaCode'
+                                                value={areaCode}
+                                                onChange={this.ChangeHandler}
                                                 />
                                                 <div className="help-block with-errors"></div>
                                             </div>
@@ -245,10 +307,11 @@ export default class Profile extends React.Component {
                                             type="text"
                                             className="form-control"
                                             required={true}
-                                            data-error="Please enter your subject"
-                                            placeholder="Your subject"
-                                        // value={this.state.formFields.subject}
-                                        // onChange={this.subjectChangeHandler}
+                                            data-error="Please enter your Address"
+                                            placeholder="Your Address"
+                                            name='address'
+                                        value={address}
+                                        onChange={this.ChangeHandler}
                                         />
                                         <div className="help-block with-errors"></div>
                                     </div>
@@ -262,8 +325,9 @@ export default class Profile extends React.Component {
                                             required={true}
                                             data-error="Write your message"
                                             placeholder="Enter your message here..."
-                                        // value={this.state.formFields.text}
-                                        // onChange={this.textChangeHandler}
+                                            name='about'
+                                        value={about}
+                                        onChange={this.ChangeHandler}
                                         />
                                         <div className="help-block with-errors"></div>
                                     </div>
@@ -273,10 +337,11 @@ export default class Profile extends React.Component {
                                             className="form-control"
                                             id="message"
                                             rows="2"
-                                            data-error="Write your message"
-                                            placeholder="Enter your message here..."
-                                        // value={this.state.formFields.text}
-                                        // onChange={this.textChangeHandler}
+                                            data-error="Write your Requirements / any Question?"
+                                            placeholder="Enter your Requirements /  Question here..."
+                                            name='question'
+                                        value={question}
+                                        onChange={this.ChangeHandler}
                                         />
                                         <div className="help-block with-errors">Optional</div>
                                     </div>
