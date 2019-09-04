@@ -7,6 +7,7 @@ import S3 from '../../images/web/Photo_2.jpg'
 import S4 from '../../images/web/s2.jpg'
 import S5 from '../../images/web/s3.jpg'
 import S6 from '../../images/web/s4.jpg'
+import { connect } from "react-redux"
 const options = {
     nav: true,
     margin: 30,
@@ -35,7 +36,7 @@ const options = {
     }
 }
 
-export default class Features extends React.Component {
+ class Features extends React.Component {
     render() {
         return (
             <section id="features" className="awsome-features"> 
@@ -202,3 +203,16 @@ export default class Features extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Features);

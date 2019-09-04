@@ -2,7 +2,8 @@ import OwlCarousel from 'react-owl-carousel3';
 import React, { Component } from 'react';
 import Uploader from './Uploader';
 import NoImage from '../../images/NoImage.jpg'
-
+import { connect } from "react-redux"
+import { MainMiddleware } from '../../store/middlewares';
 const options = {
     items: 1,
     nav: false,
@@ -20,7 +21,7 @@ const options = {
 }
 
 
-export default class Profile extends React.Component {
+ class AddPost extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -365,3 +366,16 @@ export default class Profile extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: (text) => { dispatch(MainMiddleware.ChangeText(text)) }
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

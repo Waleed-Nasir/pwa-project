@@ -9,7 +9,8 @@ import React, { Component } from 'react';
 import './sli.css'
 import S1 from '../../images/web/s1.jpg'
 import S2 from '../../images/web/mike.jpg'
-export default class DetailsOne extends React.Component {
+import { connect } from "react-redux"
+class FindPROP extends React.Component {
     render() {
       
         return (
@@ -170,3 +171,16 @@ export default class DetailsOne extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(FindPROP)

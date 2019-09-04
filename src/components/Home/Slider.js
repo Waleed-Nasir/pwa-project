@@ -7,6 +7,7 @@ import S3 from '../../images/web/Photo_2.jpg'
 import S4 from '../../images/web/brina.jpg'
 import S5 from '../../images/web/unsplash.jpg'
 import S6 from '../../images/web/alexandra.jpg'
+import { connect } from "react-redux"
 
 const options = {
     items: 1,
@@ -135,4 +136,16 @@ Slider.defaultProps = {
     ]
 }
 
-export default Slider;
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Slider);

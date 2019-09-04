@@ -1,5 +1,6 @@
 import ReactWOW from 'react-wow';
 import React, { Component } from 'react';
+import { connect } from "react-redux"
 
 class About extends React.Component {
     render(){
@@ -52,5 +53,16 @@ class About extends React.Component {
         );
     }
 }
- 
-export default About;
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(About);

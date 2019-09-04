@@ -19,30 +19,65 @@ import Profile from './components/Home/Profile';
 import AddPost from './components/Home/AddPost';
 import Chat from './components/ChatBox/Chat';
 import Peoples from './components/Details/peoples';
+import { connect } from "react-redux"
+import ShowMessage from './ShowError'
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      ShowMessageDB: false,
+      message: '',
+      error: ''
+    }
+  }
+  componentWillReceiveProps = (newProps) => {
+    const { state } = newProps
+    const { message, error } = state
+    if (message) {
+      this.setState({ ShowMessageDB: true, message: message, error: error })
+      setTimeout(() => {
+        this.setState({ ShowMessageDB: false, message: '', error: '' })
+      }, 3000);
+    }
+  }
+
   render() {
+    const { message, error, ShowMessageDB } = this.state
     return (
       <Layout>
-      <div>
-        <Router>
-          <div>
-            <Route exact path="/" component={Index} {...this.props} />
-            <Route exact path="/details" component={DetailsOne}  {...this.props} />
-            <Route exact path="/properties" component={Blog}  {...this.props} />
-            <Route exact path="/findhome" component={Detailstwo}  {...this.props} />
-            <Route exact path="/registry" component={Registry}  {...this.props} />
-            <Route exact path="/profile" component={Profile}  {...this.props} />
-            <Route exact path="/addpost" component={AddPost}  {...this.props} />
-            <Route exact path="/chat" component={Chat}  {...this.props} />
-            <Route exact path="/peoples" component={Peoples}  {...this.props} />
+        <div>
+          <Router history={History}>
+            <div>
+              <Route exact path="/" component={Index} {...this.props} />
+              <Route path="/details" component={DetailsOne}  {...this.props} />
+              <Route path="/properties" component={Blog}  {...this.props} />
+              <Route path="/findhome" component={Detailstwo}  {...this.props} />
+              <Route path="/registry" component={Registry}  {...this.props} />
+              <Route path="/profile" component={Profile}  {...this.props} />
+              <Route path="/addpost" component={AddPost}  {...this.props} />
+              <Route path="/chat" component={Chat}  {...this.props} />
+              <Route path="/peoples" component={Peoples}  {...this.props} />
 
-          </div>
-        </Router>
-      </div>
+            </div>
+          </Router>
+        </div>
+        <ShowMessage message={message} error={error} ShowMessage={ShowMessageDB} />
       </Layout>
 
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    Buttons: state.Main.Buttons,
+    Text: state.Main.Text,
+    state: state.Auth,
+  }
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    ChangeText: () => console.log('call')
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);

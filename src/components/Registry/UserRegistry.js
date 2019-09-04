@@ -17,6 +17,10 @@ import FormControl from '@material-ui/core/FormControl';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Visibility from '@material-ui/icons/Visibility';
 import lunch from '../../images/Houseit-logo/its-all-about-people.png'
+import { connect } from "react-redux"
+import firebase,{database} from'../../config'
+import { from } from 'rxjs';
+import { AuthMiddleware } from '../../store/middlewares';
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
@@ -26,7 +30,7 @@ const styles = theme => ({
     marginLeft: '15vw',
     marginTop: '13vh',
     height: 'auto',
-    background: 'linear-gradient(90deg,#89145a69 0,#c1403970 100%)',
+    background: 'NONE',
     textAlign: 'center',
     display: 'flex',
     [theme.breakpoints.up('md')]: {
@@ -80,24 +84,34 @@ class UserRegistry extends Component {
     super()
     this.state = {
       value: 'one',
+      email:'',
+      password:'',
+      Name:''
     };
   }
 
-  handleChange = (event, value) => {
+  handleChange = (event) => {
+    const {name,value}  = event.target
+    this.setState({ [name]:value });
+  };
+  handleChangeTab = (event, value) => {
     this.setState({ value });
   };
-
-  handleChangeIndex = index => {
-    this.setState({ value: index });
-  };
-
+  callSignUp=()=>{
+    const {Name,password,email} = this.state
+  this.props.DoSignUp({Name,password,email})
+  }
+  callSignIn=()=>{
+    const {Name,password,email} = this.state
+  this.props.DoSignIn({password,email})
+  }
   render() {
     const { classes, history, theme } = this.props;
     const { value } = this.state;
 
     return (
       <div>
-        <Paper className={classes.root} elevation={24}>
+        <Paper className={classes.root} elevation={0}>
           <div className={classes.singUpTitle}>
             {/* <Typography variant="h5" className={classes.info} >
               Plan your activities and control your  progress online
@@ -107,7 +121,7 @@ class UserRegistry extends Component {
           <div className={classes.action}>
             <AppBar position="static" color="default">
 
-              <Tabs value={value} onChange={this.handleChange}
+              <Tabs value={value} onChange={this.handleChangeTab}
                 indicatorColor="primary"
                 textColor="primary"
                 variant="fullWidth">
@@ -138,6 +152,9 @@ class UserRegistry extends Component {
                     <InputLabel htmlFor="input-with-icon-adornment">Enter User Name/Email</InputLabel>
                     <Input
                       fullWidth
+                      name='email'
+                      onChange={this.handleChange}
+                      type="email"
                       id="input-with-icon-adornment"
                       startAdornment={
                         <InputAdornment position="start">
@@ -150,6 +167,8 @@ class UserRegistry extends Component {
                     <InputLabel htmlFor="input-with-icon-adornment">Enter Password</InputLabel>
                     <Input
                       type={'password'}
+                      name='password'
+                      onChange={this.handleChange}
                       id="input-with-icon-adornment"
                       startAdornment={
                         <InputAdornment position="start">
@@ -159,7 +178,7 @@ class UserRegistry extends Component {
                     />
                   </FormControl>
                   <div>
-                    <Button variant="contained" color="primary" fullWidth className={classes.button} /*onClick={() => history.push('/products')}*/>
+                    <Button variant="contained" color="primary" fullWidth className={classes.button} onClick={() => this.callSignIn()}>
                       Sign IN
         <Next />
                     </Button>
@@ -182,6 +201,8 @@ class UserRegistry extends Component {
                   <InputLabel htmlFor="input-with-icon-adornment">Enter User Name</InputLabel>
                   <Input
                     fullWidth
+                    name='Name'
+                      onChange={this.handleChange}
                     id="input-with-icon-adornment"
                     startAdornment={
                       <InputAdornment position="start">
@@ -195,6 +216,9 @@ class UserRegistry extends Component {
                   <Input
                     fullWidth
                     id="input-with-icon-adornment"
+                    name='email'
+                    type='email'
+                      onChange={this.handleChange}
                     startAdornment={
                       <InputAdornment position="start">
                         <AccountCircle />
@@ -205,6 +229,8 @@ class UserRegistry extends Component {
                 <FormControl className={classes.margin}>
                   <InputLabel htmlFor="input-with-icon-adornment">Enter Password</InputLabel>
                   <Input
+                  name='password'
+                  onChange={this.handleChange}
                     type={'password'}
                     id="input-with-icon-adornment"
                     startAdornment={
@@ -215,7 +241,7 @@ class UserRegistry extends Component {
                   />
                 </FormControl>
                 <div>
-                  <Button variant="contained" color="primary" fullWidth className={classes.button}/* onClick={() => history.push('/products')}*/>
+                  <Button variant="contained" color="primary" fullWidth className={classes.button} onClick={() =>this.callSignUp()}>
                     Sign Up
         <Next />
                   </Button>
@@ -235,4 +261,16 @@ UserRegistry.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(UserRegistry);
+const mapStateToProps = (state) => {
+  console.log(state.Auth)
+    return {
+      state: state.Auth,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      DoSignUp: (payload) =>{dispatch( AuthMiddleware.SignUp(payload))},
+      DoSignIn: (payload) =>{dispatch( AuthMiddleware.SignIn(payload))},
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(UserRegistry));

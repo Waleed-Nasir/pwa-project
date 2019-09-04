@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react';
-export default class Footer extends React.Component {
+import { connect } from "react-redux"
+class Footer extends React.Component {
     render() {
         return (
             <footer id="footer"> 
@@ -80,3 +81,16 @@ export default class Footer extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Footer);

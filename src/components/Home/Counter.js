@@ -1,7 +1,7 @@
 import ReactWOW from 'react-wow';
 import React, { Component } from 'react';
-
-export default class Counter extends React.Component {
+import { connect } from "react-redux"
+class Counter extends React.Component {
     render() {
         return (
             <div id="counter" className="counter-stats"> 
@@ -52,3 +52,16 @@ export default class Counter extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Counter);

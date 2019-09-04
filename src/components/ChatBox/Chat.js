@@ -1,7 +1,8 @@
 import NoSSR from 'react-no-ssr';
 import React, { Component } from 'react';
 import './chat.css'
-export default class Chat extends React.Component {
+import { connect } from "react-redux"
+class Chat extends React.Component {
     componentWillMount(){
         // (function(){
   
@@ -379,3 +380,16 @@ export default class Chat extends React.Component {
 )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Chat);

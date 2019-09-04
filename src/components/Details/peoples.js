@@ -6,8 +6,9 @@ import Navigation from '../Navigation/Navigation';
 import Footer from '../Common/Footer';
 import GoTop from '../Common/GoTop'
 import React, { Component } from 'react';
+import { connect } from "react-redux"
 
-export default class Peoples extends React.Component {
+ class Peoples extends React.Component {
     render() {
         return (
             <NoSSR key="1">
@@ -179,3 +180,16 @@ export default class Peoples extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Peoples);

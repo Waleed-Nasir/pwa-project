@@ -1,7 +1,8 @@
 import ReactWOW from 'react-wow';
 import 'isomorphic-fetch'
 import React, { Component } from 'react';
-export default class Contact extends React.Component {
+import { connect } from "react-redux"
+class Contact extends React.Component {
 
     state = {
         submitting: false,
@@ -212,3 +213,16 @@ export default class Contact extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Contact);

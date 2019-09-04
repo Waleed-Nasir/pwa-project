@@ -19,9 +19,11 @@ import Footer from './Common/Footer';
 import GoTop from './Common/GoTop';
 import React, { Component } from 'react';
 import Layout from './Layout';
+import { connect } from "react-redux"
 
 class Index extends React.Component {
     render(){
+        console.log("this.porsp",this.props)
         return(
             // <NoSSR key="1">
                 // <Preloader fadeDuration={1000}>
@@ -51,4 +53,15 @@ class Index extends React.Component {
     }
 }
 
-export default Index;
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Index);

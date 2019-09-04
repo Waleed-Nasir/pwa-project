@@ -1,9 +1,9 @@
 import OwlCarousel from 'react-owl-carousel3';
 import React, { Component } from 'react';
+import { connect } from "react-redux"
 
 
-
-export default class Profile extends React.Component {
+ class Profile extends React.Component {
     render() {
         return (
             <section id="testimonial" className="testimonial-section "> 
@@ -180,3 +180,16 @@ export default class Profile extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      Buttons: state.Main.Buttons,
+      Text: state.Main.Text,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      ChangeText: () => console.log('call')
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Profile);
