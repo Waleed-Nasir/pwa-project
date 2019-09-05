@@ -5,3 +5,6 @@ export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGN_FAIL = 'SIGN_FAIL';
 export const SIGN_SUCCESS = 'SIGN_SUCCESS';
 export const SIGN_CALL = 'SIGN_CALL';
+export const CHECK_USER_FAIL = 'CHECK_USER_FAIL';
+export const CHECK_USER_CALL = 'CHECK_USER_CALL';
+export const CHECK_USER_SUCCESS = 'CHECK_USER_SUCCESS';

@@ -21,6 +21,7 @@ import Chat from './components/ChatBox/Chat';
 import Peoples from './components/Details/peoples';
 import { connect } from "react-redux"
 import ShowMessage from './ShowError'
+import { AuthMiddleware } from './store/middlewares';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -29,6 +30,10 @@ class App extends Component {
       message: '',
       error: ''
     }
+  }
+  componentWillMount(){
+    const { state } = this.props
+   !localStorage.getItem('isAuthenticated') &&this.props.checkUser()
   }
   componentWillReceiveProps = (newProps) => {
     const { state } = newProps
@@ -69,6 +74,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     Buttons: state.Main.Buttons,
     Text: state.Main.Text,
@@ -77,7 +83,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    ChangeText: () => console.log('call')
+    checkUser: () => {dispatch(AuthMiddleware.CheckCurrentUser())}
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

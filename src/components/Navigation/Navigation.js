@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import React, { Component } from 'react';
 import houseit from '../../images/Houseit-logo/houseit.png'
 import icon from '../../images/Houseit-logo/houseit-icon.png'
+import { connect } from "react-redux"
 
 class Navigation extends React.Component {
     _isMounted = false;
@@ -55,13 +56,15 @@ class Navigation extends React.Component {
         this._isMounted = false;
     }
 
-    renderMenus = () => {
+    renderMenus = (props) => {
         // For external pages like blog & blog details
         // if (window.location.pathname === '/details-one' || 
         //     window.location.pathname === '/details-two' || 
         //     window.location.pathname === '/blog-one' || 
         //     window.location.pathname === '/blog-two' || 
         //     window.location.pathname === '/blog-three'){
+        const { state  } = props
+        var adb = localStorage.getItem('isAuthenticated')
         return (
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
@@ -97,7 +100,7 @@ class Navigation extends React.Component {
 
                 </li>
 
-                <li className="nav-item">
+                {state.isAuthenticated|| adb&&<li className="nav-item">
                     <a
                         onClick={this.toggleNavbar}
                         className="nav-link"
@@ -107,8 +110,18 @@ class Navigation extends React.Component {
                         Add Home / Room
                             </a>
 
-                </li>
-                <li className="nav-item">
+                </li>}
+               {state.isAuthenticated|| adb?
+               <li className="nav-item">
+               <a href='/registry'
+                   onClick={this.toggleNavbar}
+                   className="nav-link"
+               >
+                   Logout
+                       </a>
+
+           </li>
+                : <li className="nav-item">
                     <a href='/registry'
                         onClick={this.toggleNavbar}
                         className="nav-link"
@@ -116,7 +129,7 @@ class Navigation extends React.Component {
                         LogIn / Register
                             </a>
 
-                </li>
+                </li>}
             </ul>
         );
 
@@ -124,6 +137,7 @@ class Navigation extends React.Component {
 
     render() {
         const { collapsed } = this.state;
+        const { state } = this.props
         const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
         const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
         return (
@@ -148,7 +162,7 @@ class Navigation extends React.Component {
                     </button>
 
                     <div className={classOne} id="navbarSupportedContent">
-                        {this.renderMenus()}
+                        {this.renderMenus(this.props)}
                     </div>
                 </div>
             </nav>
@@ -156,4 +170,15 @@ class Navigation extends React.Component {
     }
 }
 
-export default Navigation;
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+      state: state.Auth,
+    }
+  };
+  const mapDispatchToProps = (dispatch) => {
+    return {
+    //   checkUser: () => {dispatch(AuthMiddleware.CheckCurrentUser())}
+    }
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

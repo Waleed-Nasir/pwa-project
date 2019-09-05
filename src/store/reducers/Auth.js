@@ -1,12 +1,13 @@
 import {
-    SIGNUP_CALL, SIGNUP_FAIL, SIGNUP_SUCCESS, SIGN_FAIL, SIGN_SUCCESS, SIGN_CALL
+    SIGNUP_CALL, SIGNUP_FAIL, SIGNUP_SUCCESS, SIGN_FAIL, SIGN_SUCCESS, SIGN_CALL,CHECK_USER_CALL,CHECK_USER_SUCCESS,CHECK_USER_FAIL
 } from '../constants';
 
 const initialState = {
    loader:false,
    isAuthenticated:false,
    message:'',
-   error:false
+   error:false,
+   user:{}
 }
 
 export default function Auth(state = initialState, action) {
@@ -65,7 +66,28 @@ export default function Auth(state = initialState, action) {
 
             }
             break;
+            case CHECK_USER_CALL:
+                state = {
+                    ...state,
+                    isAuthenticated:false
+                }
+                break;
+                case CHECK_USER_SUCCESS:
+            state = {
+                ...state,
+                user: action.payload,
+                isAuthenticated:true,
 
+            }
+            break;
+            case CHECK_USER_FAIL:
+            state = {
+                ...state,
+                user: {},
+                isAuthenticated:false,
+
+            }
+            break;
         default:
             break;
     }
