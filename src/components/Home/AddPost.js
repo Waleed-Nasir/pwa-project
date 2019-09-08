@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import Uploader from './Uploader';
 import NoImage from '../../images/NoImage.jpg'
 import { connect } from "react-redux"
-import { MainMiddleware } from '../../store/middlewares';
+import { MainMiddleware, AuthMiddleware } from '../../store/middlewares';
+import MaunMiddleware from '../../store/middlewares/MainMiddleware';
 const options = {
     items: 1,
     nav: false,
@@ -31,7 +32,7 @@ const options = {
           type:'',
           slogan:'',
           rooms:'',
-          floors:'',
+          BathRoom:'',
             price:'',
             country:'',
             city:'',
@@ -54,8 +55,22 @@ const options = {
         console.log(name,value)
         this.setState({[name]:value})
     }
+    handleSubmit=(e)=>{
+        e.preventDefault();
+        const {Auth} = this.props
+        var user = Auth.user
+                const { 
+        imagesPreviewUrls,title,type,slogan,rooms,BathRoom,
+        price,country,city,areaCode,address,about,question,
+        email,number} = this.state
+        let data = { imagesPreviewUrls,title,type,slogan,rooms,BathRoom,
+            price,country,city,areaCode,address,about,question,
+            email,number,user}
+       this.props.Addpost(data)
+   
+    }
     render() {
-        const {imagesPreviewUrls,title,type,slogan,rooms,floors,price,country,city,areaCode,address,about,question,email,number} = this.state
+        const {imagesPreviewUrls,title,type,slogan,rooms,BathRoom,price,country,city,areaCode,address,about,question,email,number} = this.state
 
         return (
             <section id="testimonial" className="testimonial-section ">
@@ -110,7 +125,7 @@ const options = {
                         </div>
                         <div className="col-lg-8" style={{ zIndex: 10 }}>
                             <div className="contact-form" >
-                                <form id="contactForm" onSubmit={this.onSubmit}>
+                                <form id="contactForm" onSubmit={(e)=>this.handleSubmit(e)}>
                                     <div className="row">
                                         <div className="col-lg-8">
                                             <div className="form-group">
@@ -118,7 +133,7 @@ const options = {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    required={true}
+                                                    // required={true}
                                                     data-error="Please enter your House title"
                                                     placeholder="Your Post Title"
                                                     name='title'
@@ -135,7 +150,7 @@ const options = {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    required={true}
+                                                    // required={true}
                                                     data-error="Please enter hosue for rent / sale"
                                                     placeholder="Type"
                                                     name='type'
@@ -153,7 +168,7 @@ const options = {
                                                 <input
                                                     type="number"
                                                     className="form-control"
-                                                    required={true}
+                                                    // required={true}
                                                     data-error="Please enter your Number"
                                                     placeholder="Your Number"
                                                     name='number'
@@ -170,7 +185,7 @@ const options = {
                                                 <input
                                                     type="email"
                                                     className="form-control"
-                                                    required={true}
+                                                    // required={true}
                                                     data-error="Please enter Email"
                                                     placeholder="Email"
                                                     name='email'
@@ -186,7 +201,7 @@ const options = {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            required={true}
+                                            // required={true}
                                             data-error="Please enter  Slogan / Tag line"
                                             placeholder="Slogan / Tag line"
                                         value={slogan}
@@ -202,7 +217,7 @@ const options = {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    required={true}
+                                                    // required={true}
                                                     data-error="Please enter Rooms"
                                                     placeholder="Rooms in number"
                                                     name='rooms'
@@ -215,15 +230,15 @@ const options = {
                                         <div className="col-lg-4">
 
                                             <div className="form-group">
-                                                <label>Floor</label>
+                                                <label>BathRooms</label>
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    required={true}
-                                                    data-error="Please enter Floor"
-                                                    placeholder="Your House Floor"
-                                                    name='floorS'
-                                                value={floors}
+                                                    // required={true}
+                                                    data-error="Please enter BathRooms"
+                                                    placeholder="Your House BathRooms"
+                                                    name='BathRoom'
+                                                value={BathRoom}
                                                 onChange={this.ChangeHandler}
                                                 />
                                                 <div className="help-block with-errors"></div>
@@ -236,7 +251,7 @@ const options = {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    required={true}
+                                                    // required={true}
                                                     data-error="Please enter Price"
                                                     placeholder="Price"
                                                     name='price'
@@ -256,7 +271,7 @@ const options = {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    required={true}
+                                                    // required={true}
                                                     data-error="Please enter Country"
                                                     placeholder="Country"
                                                     name='country'
@@ -273,7 +288,7 @@ const options = {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    required={true}
+                                                    // required={true}
                                                     data-error="Please enter City"
                                                     placeholder="City"
                                                     name="city"
@@ -291,7 +306,7 @@ const options = {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    required={true}
+                                                    // required={true}
                                                     data-error="Please enter your Zip / Postal code"
                                                     placeholder="Zip / Postal code"
                                                     name='areaCode'
@@ -307,7 +322,7 @@ const options = {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            required={true}
+                                            // required={true}
                                             data-error="Please enter your Address"
                                             placeholder="Your Address"
                                             name='address'
@@ -323,7 +338,7 @@ const options = {
                                             className="form-control"
                                             id="message"
                                             rows="4"
-                                            required={true}
+                                            // required={true}
                                             data-error="Write your message"
                                             placeholder="Enter your message here..."
                                             name='about'
@@ -349,7 +364,7 @@ const options = {
                                     <Uploader getUploadContent={this.getUploadContent}/>
                                     <div className="text-center">
                                         <button type="submit" className="default-button">
-                                            Update
+                                            Create Add
                                                 {/* <i className="icofont-arrow-right"></i> */}
                                         </button>
                                         <div id="msgSubmit" className="h3 text-center hidden"></div>
@@ -370,12 +385,12 @@ const options = {
 const mapStateToProps = (state) => {
     return {
       Buttons: state.Main.Buttons,
-      Text: state.Main.Text,
+      Auth: state.Auth,
     }
   };
   const mapDispatchToProps = (dispatch) => {
     return {
-      ChangeText: (text) => { dispatch(MainMiddleware.ChangeText(text)) }
+      Addpost: (data) => { dispatch(MaunMiddleware.Addpost(data)) }
     }
   }
   export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

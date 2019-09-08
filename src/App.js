@@ -31,6 +31,9 @@ class App extends Component {
       error: ''
     }
   }
+  componentDidMount=()=>{
+    this.props.checkUser()
+  }
   componentWillMount(){
     const { state } = this.props
    !localStorage.getItem('isAuthenticated') &&this.props.checkUser()

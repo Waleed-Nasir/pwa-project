@@ -64,7 +64,7 @@ class Navigation extends React.Component {
         //     window.location.pathname === '/blog-two' || 
         //     window.location.pathname === '/blog-three'){
         const { state  } = props
-        var adb = localStorage.getItem('isAuthenticated')
+        var adb = state.isAuthenticated
         return (
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
@@ -88,6 +88,17 @@ class Navigation extends React.Component {
                             </a>
 
                 </li>
+               {adb&& <li className="nav-item">
+                    <a
+                        onClick={this.toggleNavbar}
+                        className="nav-link"
+                        href='/chat'
+
+                    >
+                        Chat Room
+                            </a>
+
+                </li>}
                 <li className="nav-item">
                     <a
                         onClick={this.toggleNavbar}
@@ -100,7 +111,7 @@ class Navigation extends React.Component {
 
                 </li>
 
-                {state.isAuthenticated|| adb&&<li className="nav-item">
+                {adb&&<li className="nav-item">
                     <a
                         onClick={this.toggleNavbar}
                         className="nav-link"
@@ -111,7 +122,18 @@ class Navigation extends React.Component {
                             </a>
 
                 </li>}
-               {state.isAuthenticated|| adb?
+                {adb&&<li className="nav-item">
+                    <a
+                        onClick={this.toggleNavbar}
+                        className="nav-link"
+                        href='/Profile'
+
+                    >
+                       Profile
+                            </a>
+
+                </li>}
+               {adb?
                <li className="nav-item">
                <a href='/registry'
                    onClick={this.toggleNavbar}

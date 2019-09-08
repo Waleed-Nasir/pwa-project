@@ -49,13 +49,21 @@ export default class AuthMiddleware {
                     // var users = firebase.auth().currentUser;
                     firebase.database().ref(`users/${user.uid}`).on('value', (usern) => {
                         localStorage.setItem('user',usern.val())
-                        dispatch(AuthActions.CheckUserSuccess(usern.val()))
+                        var data = usern.val()
+                        data[`uid`] = user.uid
+                        dispatch(AuthActions.CheckUserSuccess(data))
                     })
                 }
                 else{
                     dispatch(AuthActions.CheckUserFail())
                 }
                 })
+        }
+    }
+    static ShowMessage(data) {
+        return  (dispatch) => {
+            dispatch(AuthActions.ShowMassgaeCall())
+                    dispatch(AuthActions.ShowMassgaeSuccess(data))
         }
     }
 }

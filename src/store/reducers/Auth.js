@@ -1,10 +1,10 @@
 import {
-    SIGNUP_CALL, SIGNUP_FAIL, SIGNUP_SUCCESS, SIGN_FAIL, SIGN_SUCCESS, SIGN_CALL,CHECK_USER_CALL,CHECK_USER_SUCCESS,CHECK_USER_FAIL
+    SHOW_MESSAGE_SUCCESS,SHOW_MESSAGE_CALL, SIGNUP_CALL, SIGNUP_FAIL, SIGNUP_SUCCESS, SIGN_FAIL, SIGN_SUCCESS, SIGN_CALL,CHECK_USER_CALL,CHECK_USER_SUCCESS,CHECK_USER_FAIL
 } from '../constants';
 
 const initialState = {
    loader:false,
-   isAuthenticated:false,
+   isAuthenticated:localStorage.getItem('isAuthenticated')||false,
    message:'',
    error:false,
    user:{}
@@ -88,6 +88,20 @@ export default function Auth(state = initialState, action) {
 
             }
             break;
+            case SHOW_MESSAGE_CALL:
+                state = {
+                    ...state,
+                    message:'',
+                    error:false
+                }
+                break;
+            case SHOW_MESSAGE_SUCCESS:
+                state = {
+                    ...state,
+                    message: action.payload.message,
+                    error:false
+                }
+                break;
         default:
             break;
     }

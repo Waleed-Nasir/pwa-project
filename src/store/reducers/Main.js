@@ -1,20 +1,24 @@
 import {
-    CHANGE_TEXT
+    GET_POST_SUCCESS,GET_POST_CALL
 } from '../constants';
 
 const initialState = {
-    Buttons: ["Red", "Blue", "Orange", "Green"],
-    Text: "",
+   addpost:[]
 }
 
 export default function Main(state = initialState, action) {
     switch (action.type) {
-        case CHANGE_TEXT:
+        case GET_POST_CALL:
             state = {
                 ...state,
-                Text: action.payload,
             }
             break;
+        case GET_POST_SUCCESS:
+                state = {
+                    ...state,
+                    addpost:action.payload
+                }
+                break;
         default:
             break;
     }
