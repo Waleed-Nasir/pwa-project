@@ -57,7 +57,7 @@ class App extends Component {
           <Router history={History}>
             <div>
               <Route exact path="/" component={Index} {...this.props} />
-              <Route path="/details" component={DetailsOne}  {...this.props} />
+              <Route path="/details/:id" component={DetailsOne}  {...this.props} />
               <Route path="/properties" component={Blog}  {...this.props} />
               <Route path="/findhome" component={Detailstwo}  {...this.props} />
               <Route path="/registry" component={Registry}  {...this.props} />

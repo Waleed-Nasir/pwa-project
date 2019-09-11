@@ -11,12 +11,30 @@ import S1 from '../../images/web/s1.jpg'
 import S2 from '../../images/web/mike.jpg'
 import { connect } from "react-redux"
 import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
+import NoImage from '../../images/NoImage.jpg'
+import OwlCarousel from 'react-owl-carousel3';
+
+const options = {
+    items: 1,
+    nav: false,
+    dots: false,
+    autoplay: true,
+    margin: 40,
+    smartSpeed: 500,
+    autoplayHoverPause: true,
+    loop: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+    }
+}
 class FindPROP extends React.Component {
     componentDidMount=()=>{
         this.props.getPost()
     }
     render() {
-        const { state, showMessage } = this.props
+        const { state, showMessage,adds,history } = this.props
         return (
             <NoSSR key="1">
                 {/* <Preloader fadeDuration={1000}>
@@ -116,52 +134,44 @@ class FindPROP extends React.Component {
                 <section id="blog" className="blog-details-section">
                     <div className="container">
                         <div className="row">
-                            <div className='col-lg-3 col-md-6'>
-
+                            {adds&&adds?Object.values(adds).map(addData=>(
+                             <div className='col-lg-3 col-md-6'>
                                 <div className="single-feature">
                                     <div className="feature-icon">
-                                        <img className="feature-icon" src={S2} />
+                                    <OwlCarousel 
+                                        className="testimonial-carousel owl-carousel owl-theme"
+                                        {...options}
+                                    >
+                                 {addData.images?Object.values(addData.images).map((imagePreviewUrl, i)=>{
+                                     if(imagePreviewUrl.includes(':video/')){
+                                        return <video className="feature-icon"  src={imagePreviewUrl} height="60px !important" loop autoPlay></video>
+                                     }else
+                                         {return  <img className="feature-icon" src={imagePreviewUrl}  height="60px !important"/>}
+                             }):<img className="feature-icon" src={NoImage}/>}
+                              
+                            </OwlCarousel>
                                         <div className="post-profile">
                                             <img src={S1} alt="client Image" height="60px !important" />
                                         </div>
                                     </div>
-                                    <h4>Highly Dec</h4>
-                                    <p className="post-discription">There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
+                                    <h4>{addData.title}</h4>
+                                    <p className="post-discription">{addData.slogan}</p>
                                     <div className="post-containre">
-                                        <span className="about-post">Owner :&nbsp;&nbsp; Alisa Match</span>
-                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 4</span>
-                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 444$</span>
+                                        <span className="about-post">Owner :&nbsp;&nbsp; {addData.user.Name}</span>
+                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; {addData.rooms}</span>
+                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {addData.price}</span>
                                     </div>
                                     <div className="default-button"
-                                        onClick={state.isAuthenticated ? () => { } : () => showMessage({ message: 'Sorry you need to login to see more details' })}
+                                        onClick={state.isAuthenticated ? () => history.push(`/details/${addData.key}`) : () => showMessage({ message: 'Sorry you need to login to see more details' })}
                                         style={{ height: 30, paddingTop: 5, cursor: 'pointer' }}>
-                                        {/* <i className="icofont-cloud-download"></i>  */}
                                         view
                                     </div>
                                 </div>
-                            </div>
-                            <div className='col-lg-3 col-md-6'>
-
-                                <div className="single-feature">
-                                    <div className="feature-icon">
-                                        <img className="feature-icon" src={S2} />
-                                        <div className="post-profile">
-                                            <img src={S1} alt="client Image" height="60px !important" />
-                                        </div>
-                                    </div>
-                                    <h4>Highly Dec</h4>
-                                    <p className="post-discription">There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                    <div className="post-containre">
-                                        <span className="about-post">Owner :&nbsp;&nbsp; Alisa Match</span>
-                                        <span className="about-post">Room  &nbsp;:&nbsp;&nbsp; 4</span>
-                                        <span className="about-post">Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 444$</span>
-                                    </div>
-                                    <div className="default-button" style={{ height: 30, paddingTop: 5, cursor: 'pointer' }}>
-                                        {/* <i className="icofont-cloud-download"></i>  */}
-                                        view
-     </div>
-                                </div>
-                            </div>
+                            </div>)): <div className='col-lg-4'>
+                               
+                                    <h2>Sorry there is no add Avilabel</h2>
+                            </div>}
+                           
                         </div>
                     </div>
                 </section>
@@ -182,6 +192,7 @@ const mapStateToProps = (state) => {
     return {
         Buttons: state.Main.Buttons,
         state: state.Auth,
+        adds:state.Main.addpost
     }
 };
 const mapDispatchToProps = (dispatch) => {

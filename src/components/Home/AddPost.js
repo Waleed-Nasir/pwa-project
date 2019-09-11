@@ -62,11 +62,11 @@ const options = {
                 const { 
         imagesPreviewUrls,title,type,slogan,rooms,BathRoom,
         price,country,city,areaCode,address,about,question,
-        email,number} = this.state
-        let data = { imagesPreviewUrls,title,type,slogan,rooms,BathRoom,
+        email,number,files} = this.state
+        let data = {images:[],title,type,slogan,rooms,BathRoom,
             price,country,city,areaCode,address,about,question,
             email,number,user}
-       this.props.Addpost(data)
+       this.props.Addpost(data,files)
    
     }
     render() {
@@ -390,7 +390,7 @@ const mapStateToProps = (state) => {
   };
   const mapDispatchToProps = (dispatch) => {
     return {
-      Addpost: (data) => { dispatch(MaunMiddleware.Addpost(data)) }
+      Addpost: (data,files) => { dispatch(MaunMiddleware.Addpost(data,files)) }
     }
   }
   export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

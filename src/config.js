@@ -5,7 +5,7 @@ var config = {
     authDomain: "houseit-e325e.firebaseapp.com",
     databaseURL: "https://houseit-e325e.firebaseio.com",
     projectId: "houseit-e325e",
-    storageBucket: "",
+    storageBucket: "gs://houseit-e325e.appspot.com",
     messagingSenderId: "211039595002",
     appId: "1:211039595002:web:b0ed7db59a639fb63f5c43"
   };
