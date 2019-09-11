@@ -3,16 +3,12 @@ import firebase, { database } from '../../config'
 
 export default class MaunMiddleware {
 
-    static Addpost(payload,files) {
+    static Addpost(payload) {
         return async (dispatch) => {
             dispatch(Actions.AddpostCall())
             await  firebase.database().ref(`adds/`).push(payload).then((da)=>{
                 firebase.database().ref(`users/${payload.user.uid}/myadds`).push(da.key)
                 firebase.database().ref(`adds/${da.key}`).child('key').set(da.key)
-                        for (var i = 0; i < files.length; i++) {
-                                    var imageFile = files[i];
-                                    dispatch(this.UploadDoc(imageFile,da.key,i+1))
-                             }
             dispatch(Actions.AddpostSuccess({ message: 'Post Added' }));
             dispatch(AuthActions.ShowMassgaeCall());
             dispatch(AuthActions.ShowMassgaeSuccess({ message: 'Post Created Successfully'}))}
@@ -33,7 +29,7 @@ export default class MaunMiddleware {
             })
     }
     }
-    static UploadDoc(file,key,i) {
+    static UploadDoc(file,i) {
         return (dispatch) => {
             const ref = firebase.storage().ref();
             const name = (+new Date()) + '-' + file.name;
@@ -44,11 +40,28 @@ export default class MaunMiddleware {
             task
             .then(snapshot => snapshot.ref.getDownloadURL())
             .then((url) => {
-                firebase.database().ref(`adds/${key}/`).child('images').push(url)
-                dispatch(AuthActions.ShowMassgaeSuccess({ message: `Content Uploaded ${i}`})) 
+                // firebase.database().ref(`adds/${key}/`).child('images').push(url)
+                dispatch(AuthActions.ShowMassgaeSuccess({ message: `Content Uploaded`})) 
+                dispatch(AuthActions.Uploaded(url))
             })
-            .catch(console.error);
+            .catch((err)=> dispatch(AuthActions.ShowMassgaeSuccess({ message: err})) );
 }
+}
+/////////////////////////user////////////////////////////////////
+static userUpdate(payload) {
+    return async (dispatch) => {
+        dispatch(Actions.AddUserCall())
+        await  firebase.database().ref(`users/${payload.uid}`).set(payload).then((da)=>{
+            localStorage.setItem('user',JSON.stringify(payload))
+        dispatch(AuthActions.AddUserSuccess(payload));
+        dispatch(AuthActions.ShowMassgaeCall());
+        dispatch(AuthActions.ShowMassgaeSuccess({ message: 'Update Successfully'}))}
+        ).catch(error => {
+            dispatch(Actions.AddUserFail(error));
+            dispatch(AuthActions.ShowMassgaeCall());
+            dispatch(AuthActions.ShowMassgaeSuccess(error))}
+        )
+    }
 }
 }
 

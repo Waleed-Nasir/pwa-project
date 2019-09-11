@@ -45,6 +45,7 @@ const options = {
         }
     }
     getUploadContent=(file,reader)=>{
+        this.props.UploadFB(file)
         this.setState(prevState => ({
             files: [...prevState.files, file],
             imagesPreviewUrls: [...prevState.imagesPreviewUrls, reader]
@@ -52,21 +53,19 @@ const options = {
     }
     ChangeHandler=(e)=>{
         const { name,value } = e.target
-        console.log(name,value)
         this.setState({[name]:value})
     }
     handleSubmit=(e)=>{
         e.preventDefault();
-        const {Auth} = this.props
+        const {Auth,uploaded} = this.props
         var user = Auth.user
-                const { 
-        imagesPreviewUrls,title,type,slogan,rooms,BathRoom,
+                const { title,type,slogan,rooms,BathRoom,
         price,country,city,areaCode,address,about,question,
-        email,number,files} = this.state
-        let data = {images:[],title,type,slogan,rooms,BathRoom,
+        email,number} = this.state
+        let data = {images:uploaded,title,type,slogan,rooms,BathRoom,
             price,country,city,areaCode,address,about,question,
             email,number,user}
-       this.props.Addpost(data,files)
+       this.props.Addpost(data)
    
     }
     render() {
@@ -361,7 +360,7 @@ const options = {
                                         />
                                         <div className="help-block with-errors">Optional</div>
                                     </div>
-                                    <Uploader getUploadContent={this.getUploadContent}/>
+                                    <Uploader  getUploadContent={this.getUploadContent}/>
                                     <div className="text-center">
                                         <button type="submit" className="default-button">
                                             Create Add
@@ -384,13 +383,14 @@ const options = {
 
 const mapStateToProps = (state) => {
     return {
-      Buttons: state.Main.Buttons,
+      uploaded: state.Main.uploaded,
       Auth: state.Auth,
     }
   };
   const mapDispatchToProps = (dispatch) => {
     return {
-      Addpost: (data,files) => { dispatch(MaunMiddleware.Addpost(data,files)) }
+      Addpost: (data) => { dispatch(MaunMiddleware.Addpost(data)) },
+      UploadFB: (files) => { dispatch(MaunMiddleware.UploadDoc(files)) }
     }
   }
   export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

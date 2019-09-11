@@ -21,7 +21,7 @@ import Chat from './components/ChatBox/Chat';
 import Peoples from './components/Details/peoples';
 import { connect } from "react-redux"
 import ShowMessage from './ShowError'
-import { AuthMiddleware } from './store/middlewares';
+import { AuthMiddleware, MainMiddleware } from './store/middlewares';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -31,12 +31,11 @@ class App extends Component {
       error: ''
     }
   }
-  componentDidMount=()=>{
-    this.props.checkUser()
-  }
+
   componentWillMount(){
     const { state } = this.props
    !localStorage.getItem('isAuthenticated') &&this.props.checkUser()
+    this.props.getPost()
   }
   componentWillReceiveProps = (newProps) => {
     const { state } = newProps
@@ -51,6 +50,7 @@ class App extends Component {
 
   render() {
     const { message, error, ShowMessageDB } = this.state
+    console.log(this.props)
     return (
       <Layout>
         <div>
@@ -58,14 +58,13 @@ class App extends Component {
             <div>
               <Route exact path="/" component={Index} {...this.props} />
               <Route path="/details/:id" component={DetailsOne}  {...this.props} />
-              <Route path="/properties" component={Blog}  {...this.props} />
+              {/* <Route path="/properties" component={Blog}  {...this.props} /> */}
               <Route path="/findhome" component={Detailstwo}  {...this.props} />
               <Route path="/registry" component={Registry}  {...this.props} />
               <Route path="/profile" component={Profile}  {...this.props} />
               <Route path="/addpost" component={AddPost}  {...this.props} />
               <Route path="/chat" component={Chat}  {...this.props} />
               <Route path="/peoples" component={Peoples}  {...this.props} />
-
             </div>
           </Router>
         </div>
@@ -86,7 +85,9 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkUser: () => {dispatch(AuthMiddleware.CheckCurrentUser())}
+    checkUser: () => {dispatch(AuthMiddleware.CheckCurrentUser())},    
+    getPost:()=>{dispatch(MainMiddleware.GetAdds())}
+
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

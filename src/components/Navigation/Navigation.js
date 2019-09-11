@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import houseit from '../../images/Houseit-logo/houseit.png'
 import icon from '../../images/Houseit-logo/houseit-icon.png'
 import { connect } from "react-redux"
+import { AuthMiddleware } from '../../store/middlewares';
 
 class Navigation extends React.Component {
     _isMounted = false;
@@ -17,7 +18,42 @@ class Navigation extends React.Component {
             collapsed: !this.state.collapsed,
         });
     }
-
+    componentWillMount = (newProps) => {
+        const { isAuthenticated } = this.props
+        var pathName = window.location.pathname
+        if(!isAuthenticated){
+        switch (pathName) {
+            case '/chat':
+                window.location.pathname = '/'
+                break;
+            case '/profile':
+                window.location.pathname = '/'
+                break;
+            case '/addpost':
+                window.location.pathname = '/'
+                break;
+        }}else if(isAuthenticated &&  window.location.pathname === '/registry'){
+            window.location.pathname = '/profile'
+        }
+    }
+    componentWillReceiveProps = (newProps) => {
+        const { isAuthenticated } = newProps
+        var pathName = window.location.pathname
+        if(!isAuthenticated){
+        switch (pathName) {
+            case '/chat':
+                window.location.pathname = '/'
+                break;
+            case '/profile':
+                window.location.pathname = '/'
+                break;
+            case '/addpost':
+                window.location.pathname = '/'
+                break;
+        }}else if(isAuthenticated &&  window.location.pathname === '/registry'){
+            window.location.pathname = '/profile'
+        }
+    }
     componentDidMount() {
         this._isMounted = true;
         let elementId = document.getElementById("navbar");
@@ -63,7 +99,7 @@ class Navigation extends React.Component {
         //     window.location.pathname === '/blog-one' || 
         //     window.location.pathname === '/blog-two' || 
         //     window.location.pathname === '/blog-three'){
-        const { state  } = props
+        const { state } = props
         var adb = state.isAuthenticated
         return (
             <ul className="navbar-nav ml-auto">
@@ -84,11 +120,11 @@ class Navigation extends React.Component {
                         href='/peoples'
 
                     >
-                      People`s
+                        People`s
                             </a>
 
                 </li>
-               {adb&& <li className="nav-item">
+                {adb && <li className="nav-item">
                     <a
                         onClick={this.toggleNavbar}
                         className="nav-link"
@@ -111,7 +147,7 @@ class Navigation extends React.Component {
 
                 </li>
 
-                {adb&&<li className="nav-item">
+                {adb && <li className="nav-item">
                     <a
                         onClick={this.toggleNavbar}
                         className="nav-link"
@@ -122,36 +158,36 @@ class Navigation extends React.Component {
                             </a>
 
                 </li>}
-                {adb&&<li className="nav-item">
+                {adb && <li className="nav-item">
                     <a
                         onClick={this.toggleNavbar}
                         className="nav-link"
                         href='/Profile'
 
                     >
-                       Profile
+                        Profile
                             </a>
 
                 </li>}
-               {adb?
-               <li className="nav-item">
-               <a href='/registry'
-                   onClick={this.toggleNavbar}
-                   className="nav-link"
-               >
-                   Logout
-                       </a>
+                {adb ?
+                    <li className="nav-item">
+                        <div
+                            onClick={() => this.props.SignOut()}
+                            className="nav-link"
+                        >
+                            Logout
+                       </div>
 
-           </li>
-                : <li className="nav-item">
-                    <a href='/registry'
-                        onClick={this.toggleNavbar}
-                        className="nav-link"
-                    >
-                        LogIn / Register
+                    </li>
+                    : <li className="nav-item">
+                        <a href='/registry'
+                            onClick={this.toggleNavbar}
+                            className="nav-link"
+                        >
+                            LogIn / Register
                             </a>
 
-                </li>}
+                    </li>}
             </ul>
         );
 
@@ -193,14 +229,14 @@ class Navigation extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
-      state: state.Auth,
+        state: state.Auth,
+        isAuthenticated: state.Auth.isAuthenticated
     }
-  };
-  const mapDispatchToProps = (dispatch) => {
+};
+const mapDispatchToProps = (dispatch) => {
     return {
-    //   checkUser: () => {dispatch(AuthMiddleware.CheckCurrentUser())}
+        SignOut: () => { dispatch(AuthMiddleware.SignOut()) }
     }
-  }
-  export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

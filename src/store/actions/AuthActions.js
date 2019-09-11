@@ -1,6 +1,10 @@
 import {
     SHOW_MESSAGE_SUCCESS,
-    SHOW_MESSAGE_CALL,    SIGNUP_CALL,SIGNUP_FAIL,SIGNUP_SUCCESS,SIGN_FAIL,SIGN_SUCCESS,SIGN_CALL,CHECK_USER_CALL,CHECK_USER_SUCCESS,CHECK_USER_FAIL
+    SHOW_MESSAGE_CALL,UPLOADED,
+    SIGNUP_CALL,SIGNUP_FAIL,SIGNUP_SUCCESS,
+    SIGN_FAIL,SIGN_SUCCESS,SIGN_CALL,
+    CHECK_USER_CALL,CHECK_USER_SUCCESS,CHECK_USER_FAIL,
+    LOGOUT_CALL,LOGOUT_FAIL,LOGOUT_SUCCESS,
 } from '../constants'
 
 
@@ -66,6 +70,29 @@ export default class AuthActions {
     static CheckUserFail() {
         return {
             type: CHECK_USER_FAIL,
+        }
+    }
+    static Uploaded(data) {
+        return {
+            type: UPLOADED,
+            payload:data
+        }
+    }
+    static LogoutCall() {
+        return {
+            type: LOGOUT_CALL,
+        }
+    }
+    static LogoutSuccess(data) {
+        return {
+            type: LOGOUT_SUCCESS,
+            payload: data
+        }
+    }
+    static LogoutFailed(data) {
+        return {
+            type: LOGOUT_FAIL,
+            payload: data
         }
     }
 }

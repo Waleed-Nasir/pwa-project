@@ -30,8 +30,8 @@ const options = {
     }
 }
 class FindPROP extends React.Component {
-    componentDidMount=()=>{
-        this.props.getPost()
+    componentWillMount=()=>{
+        // this.props.getPost()
     }
     render() {
         const { state, showMessage,adds,history } = this.props
@@ -107,8 +107,6 @@ class FindPROP extends React.Component {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {/* {this.successMessage()} */}
                                     </form>
                                 </div>
                             </div>
@@ -142,7 +140,7 @@ class FindPROP extends React.Component {
                                         className="testimonial-carousel owl-carousel owl-theme"
                                         {...options}
                                     >
-                                 {addData.images?Object.values(addData.images).map((imagePreviewUrl, i)=>{
+                                 {addData.images&&addData.images.length>0?addData.images.map((imagePreviewUrl, i)=>{
                                      if(imagePreviewUrl.includes(':video/')){
                                         return <video className="feature-icon"  src={imagePreviewUrl} height="60px !important" loop autoPlay></video>
                                      }else

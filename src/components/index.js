@@ -25,9 +25,6 @@ class Index extends React.Component {
     render(){
         console.log("this.porsp",this.props)
         return(
-            // <NoSSR key="1">
-                // <Preloader fadeDuration={1000}>
-                //     <Navigation />
                 <div>
 
                     <Slider />

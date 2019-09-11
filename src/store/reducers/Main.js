@@ -1,9 +1,10 @@
 import {
-    GET_POST_SUCCESS,GET_POST_CALL
+    GET_POST_SUCCESS,GET_POST_CALL,UPLOADED
 } from '../constants';
 
 const initialState = {
-   addpost:[]
+   addpost:[],
+   uploaded:[]
 }
 
 export default function Main(state = initialState, action) {
@@ -19,6 +20,12 @@ export default function Main(state = initialState, action) {
                     addpost:action.payload
                 }
                 break;
+        case UPLOADED:
+                    state = {
+                        ...state,
+                        uploaded: [...state.uploaded,action.payload]
+                    }
+                    break;
         default:
             break;
     }

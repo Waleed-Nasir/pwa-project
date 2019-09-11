@@ -1,5 +1,5 @@
 import {
-    ADD_POST_CALL, ADD_POST_SUCCESS,ADD_POST_FAIL,GET_POST_SUCCESS,GET_POST_CALL
+    ADD_POST_CALL, ADD_POST_SUCCESS,ADD_POST_FAIL,GET_POST_SUCCESS,GET_POST_CALL,ADD_USER_UPDATE_CALL, ADD_USER_UPDATE_SUCCESS,ADD_USER_UPDATE_FAIL
 } from '../constants'
 
 
@@ -34,5 +34,21 @@ export default class Actions {
             payload: data
         }
     }
-
+    static AddUserCall(data) {
+        return {
+            type: ADD_USER_UPDATE_CALL,
+        }
+    }
+    static AddUserSuccess(data) {
+        return {
+            type: ADD_USER_UPDATE_SUCCESS,
+            payload: data
+        }
+    }
+    static AddUserFail(data) {
+        return {
+            type: ADD_USER_UPDATE_FAIL,
+            payload: data
+        }
+    }
 }

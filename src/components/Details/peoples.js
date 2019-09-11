@@ -7,9 +7,11 @@ import Footer from '../Common/Footer';
 import GoTop from '../Common/GoTop'
 import React, { Component } from 'react';
 import { connect } from "react-redux"
+import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
 
  class Peoples extends React.Component {
     render() {
+        const { state, showMessage,user,history } = this.props
         return (
             <NoSSR key="1">
                 {/* <Preloader fadeDuration={1000}>
@@ -53,117 +55,16 @@ import { connect } from "react-redux"
                                         </div>
                                         <h3 className="title">Tareq</h3>
                                         <span className="post">UI / UX Designer</span>
-                                        <div className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}>
+                                        <div
+                                         className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}
+                                         onClick={state.isAuthenticated ?!user.number || !user.dob?()=> showMessage({ message: 'Sorry you need to compelet your profile first' }) :() => history.push(`/chat/`) : () => showMessage({ message: 'Sorry you need to login to use chat feature' })}
+                                         >
                                      Start Chat
                                     </div>
                                     </div>
                                 </div>
                                 </div>
-                                <div className="col-lg-3" style={{height:'460px'}}> 
-                                <div className="testimonial-item">
-                                    <div className="post-containre">
-                                        <span className="about-post">Email :&nbsp;&nbsp; 444$</span>
-                                        <span className="about-post">Age &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; Alisa Match</span>
-                                        <span className="about-post">Lives &nbsp;:&nbsp;&nbsp; 4</span>
-                                    </div>
-                                    <p className="post-discription"><b><b>Tag Line:</b></b> There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                   
-                                    <div className="testimonial-content">
-                                        <div className="pic">
-                                            <img src={require("../../images/client/1.png")} alt="client Image" />
-                                        </div>
-                                        <h3 className="title">Tareq</h3>
-                                        <span className="post">UI / UX Designer</span>
-                                        <div className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}>
-                                     Start Chat
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div className="col-lg-3" style={{height:'460px'}}> 
-                                <div className="testimonial-item">
-                                    <div className="post-containre">
-                                        <span className="about-post">Email :&nbsp;&nbsp; 444$</span>
-                                        <span className="about-post">Age &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; Alisa Match</span>
-                                        <span className="about-post">Lives &nbsp;:&nbsp;&nbsp; 4</span>
-                                    </div>
-                                    <p className="post-discription"><b><b>Tag Line:</b></b> There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                   
-                                    <div className="testimonial-content">
-                                        <div className="pic">
-                                            <img src={require("../../images/client/1.png")} alt="client Image" />
-                                        </div>
-                                        <h3 className="title">Tareq</h3>
-                                        <span className="post">UI / UX Designer</span>
-                                        <div className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}>
-                                     Start Chat
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div className="col-lg-3" style={{height:'460px'}}> 
-                                <div className="testimonial-item">
-                                    <div className="post-containre">
-                                        <span className="about-post">Email :&nbsp;&nbsp; 444$</span>
-                                        <span className="about-post">Age &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; Alisa Match</span>
-                                        <span className="about-post">Lives &nbsp;:&nbsp;&nbsp; 4</span>
-                                    </div>
-                                    <p className="post-discription"><b><b>Tag Line:</b></b> There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                   
-                                    <div className="testimonial-content">
-                                        <div className="pic">
-                                            <img src={require("../../images/client/1.png")} alt="client Image" />
-                                        </div>
-                                        <h3 className="title">Tareq</h3>
-                                        <span className="post">UI / UX Designer</span>
-                                        <div className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}>
-                                     Start Chat
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div className="col-lg-3" style={{height:'460px'}}> 
-                                <div className="testimonial-item">
-                                    <div className="post-containre">
-                                        <span className="about-post">Email :&nbsp;&nbsp; 444$</span>
-                                        <span className="about-post">Age &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; Alisa Match</span>
-                                        <span className="about-post">Lives &nbsp;:&nbsp;&nbsp; 4</span>
-                                    </div>
-                                    <p className="post-discription"><b><b>Tag Line:</b></b> There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                   
-                                    <div className="testimonial-content">
-                                        <div className="pic">
-                                            <img src={require("../../images/client/1.png")} alt="client Image" />
-                                        </div>
-                                        <h3 className="title">Tareq</h3>
-                                        <span className="post">UI / UX Designer</span>
-                                        <div className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}>
-                                     Start Chat
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div className="col-lg-3" style={{height:'460px'}}> 
-                                <div className="testimonial-item">
-                                    <div className="post-containre">
-                                        <span className="about-post">Email :&nbsp;&nbsp; 444$</span>
-                                        <span className="about-post">Age &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; Alisa Match</span>
-                                        <span className="about-post">Lives &nbsp;:&nbsp;&nbsp; 4</span>
-                                    </div>
-                                    <p className="post-discription"><b><b>Tag Line:</b></b> There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
-                                   
-                                    <div className="testimonial-content">
-                                        <div className="pic">
-                                            <img src={require("../../images/client/1.png")} alt="client Image" />
-                                        </div>
-                                        <h3 className="title">Tareq</h3>
-                                        <span className="post">UI / UX Designer</span>
-                                        <div className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}>
-                                     Start Chat
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
+                                
                                 
                             </div>
                         </div> 
@@ -183,13 +84,15 @@ import { connect } from "react-redux"
 
 const mapStateToProps = (state) => {
     return {
-      Buttons: state.Main.Buttons,
-      Text: state.Main.Text,
+        Buttons: state.Main.Buttons,
+        state: state.Auth,
+        user:state.Auth.user
     }
-  };
-  const mapDispatchToProps = (dispatch) => {
+};
+const mapDispatchToProps = (dispatch) => {
     return {
-      ChangeText: () => console.log('call')
+        showMessage: (dta) => { dispatch(AuthMiddleware.ShowMessage(dta)) },
+        getPost:()=>{dispatch(MainMiddleware.GetAdds())}
     }
-  }
+}
   export default connect(mapStateToProps, mapDispatchToProps)(Peoples);
