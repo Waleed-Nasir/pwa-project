@@ -7,6 +7,7 @@
     "@material-ui/icons": "^3.0.2",
     "add": "^2.0.6",
     "firebase": "^6.5.0",
+    "history": "^4.9.0",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-optipng": "^7.0.0",
     "imagemin-svgo": "^7.0.0",
