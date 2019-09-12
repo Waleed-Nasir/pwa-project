@@ -1,5 +1,6 @@
 import {
-    ADD_POST_CALL, ADD_POST_SUCCESS,ADD_POST_FAIL,GET_POST_SUCCESS,GET_POST_CALL,ADD_USER_UPDATE_CALL, ADD_USER_UPDATE_SUCCESS,ADD_USER_UPDATE_FAIL
+    ADD_POST_CALL, ADD_POST_SUCCESS,ADD_POST_FAIL,GET_POST_SUCCESS,GET_POST_CALL,ADD_USER_UPDATE_CALL, ADD_USER_UPDATE_SUCCESS,ADD_USER_UPDATE_FAIL,
+    GET_PEOPLE_SUCCESS,GET_PEOPLE_CALL
 } from '../constants'
 
 
@@ -31,6 +32,17 @@ export default class Actions {
     static GetpostSuccess(data) {
         return {
             type: GET_POST_SUCCESS,
+            payload: data
+        }
+    }
+    static GetPeopleCall() {
+        return {
+            type: GET_PEOPLE_CALL,
+        }
+    }
+    static GetPeopleSuccess(data) {
+        return {
+            type: GET_PEOPLE_SUCCESS,
             payload: data
         }
     }

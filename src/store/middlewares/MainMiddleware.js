@@ -29,6 +29,16 @@ export default class MaunMiddleware {
             })
     }
     }
+    static GetPeoples() {
+        return (dispatch) => {
+            dispatch(Actions.GetPeopleCall())
+          firebase.database().ref(`users/`).on('value', (adds) =>
+            {
+                var getUser = adds.val()
+                dispatch(Actions.GetPeopleSuccess(getUser))
+            })
+    }
+    }
     static UploadDoc(file,i) {
         return (dispatch) => {
             const ref = firebase.storage().ref();
@@ -40,8 +50,8 @@ export default class MaunMiddleware {
             task
             .then(snapshot => snapshot.ref.getDownloadURL())
             .then((url) => {
-                // firebase.database().ref(`adds/${key}/`).child('images').push(url)
-                dispatch(AuthActions.ShowMassgaeSuccess({ message: `Content Uploaded`})) 
+                firebase.database().ref(`content/`).push(url)
+                // dispatch(AuthActions.ShowMassgaeSuccess({ message: `Content Uploaded`})) 
                 dispatch(AuthActions.Uploaded(url))
             })
             .catch((err)=> dispatch(AuthActions.ShowMassgaeSuccess({ message: err})) );
@@ -53,7 +63,7 @@ static userUpdate(payload) {
         dispatch(Actions.AddUserCall())
         await  firebase.database().ref(`users/${payload.uid}`).set(payload).then((da)=>{
             localStorage.setItem('user',JSON.stringify(payload))
-        dispatch(AuthActions.AddUserSuccess(payload));
+        dispatch(Actions.AddUserSuccess(payload));
         dispatch(AuthActions.ShowMassgaeCall());
         dispatch(AuthActions.ShowMassgaeSuccess({ message: 'Update Successfully'}))}
         ).catch(error => {

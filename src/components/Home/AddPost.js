@@ -5,6 +5,8 @@ import NoImage from '../../images/NoImage.jpg'
 import { connect } from "react-redux"
 import { MainMiddleware, AuthMiddleware } from '../../store/middlewares';
 import MaunMiddleware from '../../store/middlewares/MainMiddleware';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 const options = {
     items: 1,
     nav: false,
@@ -41,15 +43,26 @@ const options = {
             about:'',
             question:'',
             email:'',
-            number:''
+            number:'',
+            show:false,
+            completed:0
         }
     }
+        componentWillReceiveProps=(newProps)=>{
+        const {uploaded} = newProps
+        if(uploaded.length === this.state.files.length&&this.state.files.length !==0&& this.state.completed === 0){
+        this.props.showMessage({message:'Content Uploaded now you can able to post your add'})
+        this.setState({show:false,completed:100})
+        }
+        
+      };
     getUploadContent=(file,reader)=>{
         this.props.UploadFB(file)
         this.setState(prevState => ({
             files: [...prevState.files, file],
             imagesPreviewUrls: [...prevState.imagesPreviewUrls, reader]
         }));
+        this.setState({show:true,completed:0})
     }
     ChangeHandler=(e)=>{
         const { name,value } = e.target
@@ -69,8 +82,7 @@ const options = {
    
     }
     render() {
-        const {imagesPreviewUrls,title,type,slogan,rooms,BathRoom,price,country,city,areaCode,address,about,question,email,number} = this.state
-
+        const {files,completed,show,imagesPreviewUrls,title,type,slogan,rooms,BathRoom,price,country,city,areaCode,address,about,question,email,number} = this.state
         return (
             <section id="testimonial" className="testimonial-section ">
                 <div className="container">
@@ -361,9 +373,10 @@ const options = {
                                         <div className="help-block with-errors">Optional</div>
                                     </div>
                                     <Uploader  getUploadContent={this.getUploadContent}/>
+                                   {files.length>0&& <LinearProgress  variant={completed===100? "determinate":"query"} value={this.state.completed}  />}
                                     <div className="text-center">
-                                        <button type="submit" className="default-button">
-                                            Create Add
+                                        <button type="submit" className="default-button" disabled={show}>
+                                           {show?'Please wait Content is uploading':'Create Add'}
                                                 {/* <i className="icofont-arrow-right"></i> */}
                                         </button>
                                         <div id="msgSubmit" className="h3 text-center hidden"></div>
@@ -390,7 +403,8 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = (dispatch) => {
     return {
       Addpost: (data) => { dispatch(MaunMiddleware.Addpost(data)) },
-      UploadFB: (files) => { dispatch(MaunMiddleware.UploadDoc(files)) }
+      UploadFB: (files) => { dispatch(MaunMiddleware.UploadDoc(files)) },
+      showMessage: (dta) => { dispatch(AuthMiddleware.ShowMessage(dta)) },
     }
   }
   export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

@@ -33,9 +33,10 @@ class App extends Component {
   }
 
   componentWillMount(){
-    const { state } = this.props
+    const { state,people,getPost } = this.props
    !localStorage.getItem('isAuthenticated') &&this.props.checkUser()
     this.props.getPost()
+    this.props.GetPeoples()
   }
   componentWillReceiveProps = (newProps) => {
     const { state } = newProps
@@ -76,18 +77,17 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
-    Buttons: state.Main.Buttons,
-    Text: state.Main.Text,
+    people: state.Main.people,
+    adds:state.Main.addpost,
     state: state.Auth,
   }
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     checkUser: () => {dispatch(AuthMiddleware.CheckCurrentUser())},    
-    getPost:()=>{dispatch(MainMiddleware.GetAdds())}
-
+    getPost:()=>{dispatch(MainMiddleware.GetAdds())},
+    GetPeoples:()=>{dispatch(MainMiddleware.GetPeoples())}
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

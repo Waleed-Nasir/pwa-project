@@ -540,6 +540,7 @@
 }
 .about-post{
   font-size: 14px;
-  font-weight: 600
+  font-weight: 600;
+  word-break: break-all;
 }
 /*# sourceMappingURL=gradient-color-four.css.map */

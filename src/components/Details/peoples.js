@@ -11,7 +11,8 @@ import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
 
  class Peoples extends React.Component {
     render() {
-        const { state, showMessage,user,history } = this.props
+        const { state, showMessage,user,history ,people} = this.props
+        console.log(people,'ssssssssssssssss')
         return (
             <NoSSR key="1">
                 {/* <Preloader fadeDuration={1000}>
@@ -40,21 +41,22 @@ import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
                     <section id="blog" className="blog-details-section" style={{background:'#1a1a1a'}}> 
                         <div className="container"> 
                             <div className="row"> 
-                            <div className="col-lg-3" style={{height:'460px'}}> 
+                            {people&&people?Object.values(people).map(PDT=>(
+                                  <div className="col-lg-3" style={{height:'460px'}}> 
                                 <div className="testimonial-item">
                                     <div className="post-containre">
-                                        <span className="about-post">Email :&nbsp;&nbsp; 444$</span>
-                                        <span className="about-post">Age &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; Alisa Match</span>
-                                        <span className="about-post">Lives &nbsp;:&nbsp;&nbsp; 4</span>
+                                        <span className="about-post">Email :&nbsp;&nbsp; {PDT.email}</span>
+                                        <span className="about-post">Age &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {PDT.dob?PDT.dob:'N/A'}</span>
+                                        <span className="about-post">Lives &nbsp;:&nbsp;&nbsp; {PDT.address?PDT.address:'N/A'}</span>
                                     </div>
                                     <p className="post-discription"><b><b>Tag Line:</b></b> There are many variations of passages of Lorem Ipsum available,but the majorityhave suffered alteration.</p>
                                    
                                     <div className="testimonial-content">
                                         <div className="pic">
-                                            <img src={require("../../images/client/1.png")} alt="client Image" />
+                                            <img src={PDT.profileImage?PDT.profileImage:require("../../images/client/1.png")} alt="client Image" />
                                         </div>
-                                        <h3 className="title">Tareq</h3>
-                                        <span className="post">UI / UX Designer</span>
+                                        <h3 className="title">{PDT.Name}</h3>
+                                        <span className="post">{PDT.skill?PDT.skill:'N/A'}</span>
                                         <div
                                          className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}
                                          onClick={state.isAuthenticated ?!user.number || !user.dob?()=> showMessage({ message: 'Sorry you need to compelet your profile first' }) :() => history.push(`/chat/`) : () => showMessage({ message: 'Sorry you need to login to use chat feature' })}
@@ -63,7 +65,10 @@ import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
                                     </div>
                                     </div>
                                 </div>
-                                </div>
+                                </div>)):<div className='col-lg-4'>
+                               
+                               <h2>Sorry there is no add Avilabel</h2>
+                       </div>}
                                 
                                 
                             </div>
@@ -84,7 +89,7 @@ import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
 
 const mapStateToProps = (state) => {
     return {
-        Buttons: state.Main.Buttons,
+        people: state.Main.people,
         state: state.Auth,
         user:state.Auth.user
     }

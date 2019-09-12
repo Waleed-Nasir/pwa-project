@@ -15,8 +15,9 @@ export default class AuthMiddleware {
                     Name,
                     email,
                     password,
+                    uid:user.user.uid
                 })
-                localStorage.setItem('user',JSON.stringify({ email, Name}))
+                localStorage.setItem('user',JSON.stringify({ email, Name,uid:user.user.uid}))
                 dispatch(AuthActions.SignUpSuccess({message:'SignUp Success full'}))
             }
             ).catch(error => {
@@ -30,7 +31,6 @@ export default class AuthMiddleware {
             dispatch(AuthActions.SignInCall())
             await  firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
                 localStorage.setItem('UID',user.user.uid)
-                
                 firebase.database().ref(`users/${user.user.uid}`).on('value',async (usern) => {
                     let data = await usern.val()
                     // data = Object.values(data)

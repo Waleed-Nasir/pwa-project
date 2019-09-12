@@ -26,12 +26,14 @@ class Profile extends React.Component {
     componentWillReceiveProps=(newProps)=>{
         const { user } =newProps
         const { Name, email, dob, number, tag, skill, address, bio ,profileImage,uid,myadds} = user
-        this.setState({ name:Name, email, dob, number, tag, skill, address, bio ,profileImage,uid,myadds})
+        // this.setState({ name:Name, email, dob:dob?dob:'', number:number?number:'', tag:tag?tag:'', skill:skill?skill:'', address:address?address:''
+        // , bio:bio?bio:'' ,profileImage:profileImage?profileImage:false,uid:uid?uid:'',myadds:myadds?myadds:{}})
     }
     componentWillMount=()=>{
         const { user } =this.props
         const { Name, email, dob, number, tag, skill, address, bio ,profileImage,uid,myadds} = user
-        this.setState({ name:Name, email, dob, number, tag, skill, address, bio ,profileImage,uid,myadds})
+               this.setState({ name:Name, email, dob:dob?dob:'', number:number?number:'', tag:tag?tag:'', skill:skill?skill:'', address:address?address:''
+        , bio:bio?bio:'' ,profileImage:profileImage?profileImage:false,uid:uid?uid:'',myadds:myadds?myadds:{}})
     }
     handleonChamhe = (e) => {
         // FileList to Array
@@ -106,7 +108,7 @@ class Profile extends React.Component {
                                                 <input
                                                     type="email"
                                                     className="form-control"
-                                                    required={true}
+                                                    disabled={true}
                                                     data-error="Please enter your email"
                                                     placeholder="Email Address"
                                                     value={this.state.email}

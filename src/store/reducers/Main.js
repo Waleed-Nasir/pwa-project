@@ -1,10 +1,11 @@
 import {
-    GET_POST_SUCCESS,GET_POST_CALL,UPLOADED
+    GET_POST_SUCCESS,GET_POST_CALL,UPLOADED, GET_PEOPLE_SUCCESS,GET_PEOPLE_CALL
 } from '../constants';
 
 const initialState = {
    addpost:[],
-   uploaded:[]
+   uploaded:[],
+   people:{}
 }
 
 export default function Main(state = initialState, action) {
@@ -26,6 +27,17 @@ export default function Main(state = initialState, action) {
                         uploaded: [...state.uploaded,action.payload]
                     }
                     break;
+                    case GET_PEOPLE_CALL:
+                        state = {
+                            ...state,
+                        }
+                        break;
+                    case GET_PEOPLE_SUCCESS:
+                            state = {
+                                ...state,
+                                people:action.payload
+                            }
+                            break;
         default:
             break;
     }

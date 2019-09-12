@@ -5,7 +5,6 @@ import houseit from '../../images/Houseit-logo/houseit.png'
 import icon from '../../images/Houseit-logo/houseit-icon.png'
 import { connect } from "react-redux"
 import { AuthMiddleware } from '../../store/middlewares';
-
 class Navigation extends React.Component {
     _isMounted = false;
 
@@ -19,8 +18,9 @@ class Navigation extends React.Component {
         });
     }
     componentWillMount = (newProps) => {
-        const { isAuthenticated } = this.props
+        const { isAuthenticated,state,showMessage } = this.props
         var pathName = window.location.pathname
+        const {user }= state
         if(!isAuthenticated){
         switch (pathName) {
             case '/chat':
@@ -34,11 +34,23 @@ class Navigation extends React.Component {
                 break;
         }}else if(isAuthenticated &&  window.location.pathname === '/registry'){
             window.location.pathname = '/profile'
+        }else if(isAuthenticated&&!user.number || !user.dob){
+            switch (pathName) {
+                case '/chat':
+                    showMessage({message:'Sorry you need to compelet your profile first'})
+                    window.location.pathname = '/'
+                    break;
+                case '/addpost':
+                        showMessage({message:'Sorry you need to compelet your profile first'})
+                    window.location.pathname = '/'
+                    break;
+            }
         }
     }
     componentWillReceiveProps = (newProps) => {
-        const { isAuthenticated } = newProps
+        const { isAuthenticated,state,showMessage } = newProps
         var pathName = window.location.pathname
+        const {user }= state
         if(!isAuthenticated){
         switch (pathName) {
             case '/chat':
@@ -52,6 +64,17 @@ class Navigation extends React.Component {
                 break;
         }}else if(isAuthenticated &&  window.location.pathname === '/registry'){
             window.location.pathname = '/profile'
+        }else if(isAuthenticated&&!user.number || !user.dob){
+            switch (pathName) {
+                case '/chat':
+                    showMessage({message:'Sorry you need to compelet your profile first'})
+                    window.location.pathname = '/'
+                    break;
+                case '/addpost':
+                        showMessage({message:'Sorry you need to compelet your profile first'})
+                    window.location.pathname = '/'
+                    break;
+            }
         }
     }
     componentDidMount() {
@@ -99,23 +122,24 @@ class Navigation extends React.Component {
         //     window.location.pathname === '/blog-one' || 
         //     window.location.pathname === '/blog-two' || 
         //     window.location.pathname === '/blog-three'){
-        const { state } = props
+        const { state,showMessage } = props
+        const {user }= state
         var adb = state.isAuthenticated
         return (
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                    <a
-                        onClick={this.toggleNavbar}
+                    <div
+                        onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/addpost'}}
                         className="nav-link"
                         href='/'
                     >
                         Home
-                            </a>
+                            </div>
 
                 </li>
                 <li className="nav-item">
                     <a
-                        onClick={this.toggleNavbar}
+                        onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/peoples'}}
                         className="nav-link"
                         href='/peoples'
 
@@ -125,48 +149,48 @@ class Navigation extends React.Component {
 
                 </li>
                 {adb && <li className="nav-item">
-                    <a
-                        onClick={this.toggleNavbar}
+                    <div
+                        onClick={!user.number || !user.dob?()=>showMessage({message:'Sorry you need to compelet your profile first'}):(e)=>{this.toggleNavbar(e);window.location.pathname = '/chat'}}
                         className="nav-link"
                         href='/chat'
 
                     >
                         Chat Room
-                            </a>
+                            </div>
 
                 </li>}
                 <li className="nav-item">
-                    <a
-                        onClick={this.toggleNavbar}
+                    <div
+                        onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/findhome'}}
                         className="nav-link"
                         href='/findhome'
 
                     >
                         Find Home / Room
-                            </a>
+                            </div>
 
                 </li>
 
                 {adb && <li className="nav-item">
-                    <a
-                        onClick={this.toggleNavbar}
+                    <div
+                        onClick={!user.number || !user.dob?()=>showMessage({message:'Sorry you need to compelet your profile first'}):(e)=>{this.toggleNavbar(e);window.location.pathname = '/addpost'}}
                         className="nav-link"
                         href='/addpost'
 
                     >
                         Add Home / Room
-                            </a>
+                            </div>
 
                 </li>}
                 {adb && <li className="nav-item">
-                    <a
-                        onClick={this.toggleNavbar}
+                    <div
+                        onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/Profile'}}
                         className="nav-link"
                         href='/Profile'
 
                     >
                         Profile
-                            </a>
+                            </div>
 
                 </li>}
                 {adb ?
@@ -180,12 +204,12 @@ class Navigation extends React.Component {
 
                     </li>
                     : <li className="nav-item">
-                        <a href='/registry'
-                            onClick={this.toggleNavbar}
+                        <div
+                            onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/registry'}}
                             className="nav-link"
                         >
                             LogIn / Register
-                            </a>
+                            </div>
 
                     </li>}
             </ul>
@@ -236,7 +260,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        SignOut: () => { dispatch(AuthMiddleware.SignOut()) }
+        SignOut: () => { dispatch(AuthMiddleware.SignOut()) },
+        showMessage: (dta) => { dispatch(AuthMiddleware.ShowMessage(dta)) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
