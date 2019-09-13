@@ -64,7 +64,8 @@ class App extends Component {
               <Route path="/registry" component={Registry}  {...this.props} />
               <Route path="/profile" component={Profile}  {...this.props} />
               <Route path="/addpost" component={AddPost}  {...this.props} />
-              <Route path="/chat" component={Chat}  {...this.props} />
+              {/* <Route path="/chat" component={Chat}  {...this.props} /> */}
+              <Route path="/chat/:id" component={Chat}  {...this.props} />
               <Route path="/peoples" component={Peoples}  {...this.props} />
             </div>
           </Router>

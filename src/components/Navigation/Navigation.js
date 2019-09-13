@@ -150,9 +150,8 @@ class Navigation extends React.Component {
                 </li>
                 {adb && <li className="nav-item">
                     <div
-                        onClick={!user.number || !user.dob?()=>showMessage({message:'Sorry you need to compelet your profile first'}):(e)=>{this.toggleNavbar(e);window.location.pathname = '/chat'}}
+                        onClick={!user.number || !user.dob?()=>showMessage({message:'Sorry you need to compelet your profile first'}):(e)=>{this.toggleNavbar(e);window.location.pathname = '/chat/getStart'}}
                         className="nav-link"
-                        href='/chat'
 
                     >
                         Chat Room
@@ -163,7 +162,6 @@ class Navigation extends React.Component {
                     <div
                         onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/findhome'}}
                         className="nav-link"
-                        href='/findhome'
 
                     >
                         Find Home / Room
@@ -175,7 +173,6 @@ class Navigation extends React.Component {
                     <div
                         onClick={!user.number || !user.dob?()=>showMessage({message:'Sorry you need to compelet your profile first'}):(e)=>{this.toggleNavbar(e);window.location.pathname = '/addpost'}}
                         className="nav-link"
-                        href='/addpost'
 
                     >
                         Add Home / Room

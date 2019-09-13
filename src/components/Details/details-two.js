@@ -13,6 +13,7 @@ import { connect } from "react-redux"
 import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
 import NoImage from '../../images/NoImage.jpg'
 import OwlCarousel from 'react-owl-carousel3';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const options = {
     items: 1,
@@ -132,7 +133,11 @@ class FindPROP extends React.Component {
                 <section id="blog" className="blog-details-section">
                     <div className="container">
                         <div className="row">
-                            {adds&&adds?Object.values(adds).map(addData=>(
+                            {adds&&adds?!Object.keys(adds).length?
+                                 <div className="container"> 
+                                  <h2  className="banner-title">Please wait...</h2>
+                            <LinearProgress  variant={"query"}  />
+                            </div>:Object.values(adds).map(addData=>(
                              <div className='col-lg-3 col-md-6'>
                                 <div className="single-feature">
                                     <div className="feature-icon">

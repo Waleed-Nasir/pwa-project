@@ -8,11 +8,11 @@ import GoTop from '../Common/GoTop'
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
  class Peoples extends React.Component {
     render() {
         const { state, showMessage,user,history ,people} = this.props
-        console.log(people,'ssssssssssssssss')
         return (
             <NoSSR key="1">
                 {/* <Preloader fadeDuration={1000}>
@@ -41,8 +41,12 @@ import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
                     <section id="blog" className="blog-details-section" style={{background:'#1a1a1a'}}> 
                         <div className="container"> 
                             <div className="row"> 
-                            {people&&people?Object.values(people).map(PDT=>(
-                                  <div className="col-lg-3" style={{height:'460px'}}> 
+                            {people&&people?!Object.keys(people).length?
+                                 <div className="container"> 
+                                  <h2  className="banner-title">Please wait...</h2>
+                            <LinearProgress  variant={"query"}  />
+                            </div>:Object.values(people).map(PDT=>(
+                                 user.uid !== PDT.uid&& <div className="col-lg-3" style={{height:'460px'}}> 
                                 <div className="testimonial-item">
                                     <div className="post-containre">
                                         <span className="about-post">Email :&nbsp;&nbsp; {PDT.email}</span>
@@ -59,7 +63,7 @@ import { AuthMiddleware, MainMiddleware } from '../../store/middlewares';
                                         <span className="post">{PDT.skill?PDT.skill:'N/A'}</span>
                                         <div
                                          className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}
-                                         onClick={state.isAuthenticated ?!user.number || !user.dob?()=> showMessage({ message: 'Sorry you need to compelet your profile first' }) :() => history.push(`/chat/`) : () => showMessage({ message: 'Sorry you need to login to use chat feature' })}
+                                         onClick={state.isAuthenticated ?!user.number || !user.dob?()=> showMessage({ message: 'Sorry you need to compelet your profile first' }) :() => history.push(`/chat/${PDT.uid}`) : () => showMessage({ message: 'Sorry you need to login to use chat feature' })}
                                          >
                                      Start Chat
                                     </div>

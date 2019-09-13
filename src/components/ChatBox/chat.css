@@ -42,12 +42,14 @@ body {
 }
 .people-list ul {
   padding: 4px;
-  height: 670px;
+  height: 65vh;
   overflow-Y: auto;
   list-style: none;
 }
 .people-list ul li {
-  padding-bottom: 20px;
+  padding: 5px;
+  cursor: pointer;
+  border-bottom: 2px solid #80808059
 }
 .people-list img {
   float: left;
@@ -62,9 +64,12 @@ body {
 .people-list .status {
   color: #92959E;
 }
-
+.PPic{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
 .chat {
-  width: 490px;
   float: left;
   background: #F2F5F8;
   border-top-right-radius: 5px;
@@ -133,6 +138,36 @@ body {
   border-bottom-color: #86BB71;
   border-width: 10px;
   margin-left: -10px;
+}
+.chat .chat-history .startup {
+  color: white;
+  padding: 18px 20px;
+  line-height: 26px;
+  font-size: 16px;
+  border-radius: 7px;
+  margin-bottom: 30px;
+  width: 100%;
+  position: relative;
+}
+.chat .chat-history .startup:after {
+  bottom: 100%;
+  left: 7%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: #86BB71;
+  border-width: 10px;
+  margin-left: -10px;
+}
+.chat .chat-history .other-startup:after {
+  border-bottom-color: #444753;
+  left: 50%;
+}
+.chat .chat-history .other-startup {
+  background: #444753;
 }
 .chat .chat-history .my-message {
   background: #86BB71;
