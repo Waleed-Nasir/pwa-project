@@ -100,6 +100,24 @@ static sendMessage(payload) {
         })
     }
 }
+
+static AddBlog(payload) {
+    console.log("payload in blog", payload)
+    return async (dispatch) => {
+        dispatch(Actions.AddBlogCall())
+        await  firebase.database().ref(`blogs/`).push(payload).then((da)=>{
+            firebase.database().ref(`users/${payload.user.uid}/myblogs`).push(da.key)
+            firebase.database().ref(`blogs/${da.key}`).child('key').set(da.key)
+        dispatch(Actions.AddBlogSuccess({ message: 'blog Added' }));
+        dispatch(AuthActions.ShowMassgaeCall());
+        dispatch(AuthActions.ShowMassgaeSuccess({ message: 'Blog Created Successfully'}))}
+        ).catch(error => {
+            dispatch(Actions.AddBlogFail(error));
+            dispatch(AuthActions.ShowMassgaeCall());
+            dispatch(AuthActions.ShowMassgaeSuccess(error))}
+        )
+    }
+}
 }
 
 

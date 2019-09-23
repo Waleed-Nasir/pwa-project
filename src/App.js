@@ -22,6 +22,7 @@ import Peoples from './components/Details/peoples';
 import { connect } from "react-redux"
 import ShowMessage from './ShowError'
 import { AuthMiddleware, MainMiddleware } from './store/middlewares';
+import CreateBlog from './components/Blog/createBlog';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -67,6 +68,9 @@ class App extends Component {
               {/* <Route path="/chat" component={Chat}  {...this.props} /> */}
               <Route path="/chat/:id" component={Chat}  {...this.props} />
               <Route path="/peoples" component={Peoples}  {...this.props} />
+              <Route path="/blog" component={Blog}  {...this.props} />
+              <Route path="/createBlog" component={CreateBlog} {...this.props} />
+
             </div>
           </Router>
         </div>

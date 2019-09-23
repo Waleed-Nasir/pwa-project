@@ -24,6 +24,24 @@ export default class Actions {
             payload: data
         }
     }
+    static AddBlogCall(data) {
+        return {
+            type: ADD_POST_CALL,
+            payload: data
+        }
+    }
+    static AddBlogSuccess(data) {
+        return {
+            type: ADD_POST_SUCCESS,
+            payload: data
+        }
+    }
+    static AddBlogFail(data) {
+        return {
+            type: ADD_POST_FAIL,
+            payload: data
+        }
+    }
     static GetpostCall() {
         return {
             type: GET_POST_CALL,

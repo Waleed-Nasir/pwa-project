@@ -168,6 +168,17 @@ class Navigation extends React.Component {
                             </div>
 
                 </li>
+                {adb && <li className="nav-item">
+                    <div
+                        onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/blog'}}
+                        className="nav-link"
+                        href='/blog'
+
+                    >
+                        Blog
+                            </div>
+
+                </li>}
 
                 {adb && <li className="nav-item">
                     <div

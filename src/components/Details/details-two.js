@@ -36,6 +36,7 @@ class FindPROP extends React.Component {
     }
     render() {
         const { state, showMessage,adds,history } = this.props
+        console.log("data", this.props)
         return (
             <NoSSR key="1">
                 {/* <Preloader fadeDuration={1000}>
