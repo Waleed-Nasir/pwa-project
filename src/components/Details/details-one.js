@@ -29,6 +29,16 @@ class Details extends React.Component {
     }
   }
 
+  calculateAge = (dob) => {
+    if(dob != "Invalid Date"){
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms); 
+    return Math.abs(age_dt.getUTCFullYear() - 1970);}
+    else{
+      return 'N/A'
+    }
+  }
+
   render() {
     const details = this.state && this.state.details;
     const user = details && details.user;
@@ -84,14 +94,14 @@ class Details extends React.Component {
                       <h3 className="title">{user && user.Name}</h3>
                       <span className="post">{user && user.skills}</span>
                       <div className="post-containre" style={{ padding: 15 }}>
-                        <span className="post">
+                        {/* <span className="post">
                           Email &nbsp;&nbsp;:&nbsp;&nbsp; {user && user.email}
                         </span>
                         <span className="post">
                           Phone :&nbsp;&nbsp; {user && user.number}
-                        </span>
+                        </span> */}
                         <span className="post">
-                          Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 23
+                          Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; { this.calculateAge(new Date(user && user.dob))}
                         </span>
                         <span className="post">Live in :&nbsp;&nbsp;{user && user.address}</span>
                       </div>
@@ -222,42 +232,9 @@ class Details extends React.Component {
                   </div>
                   <div className="details-text-area">
                     <p>
-                      Sed ut perspiciatis unde omnis iste natus error sit
-                      voluptatem accusantium doloremque laudantium, totam rem
-                      aperiam, eaque ipsa quae ab illo inventore veritatis et
-                      quasi architecto beatae vitae dicta sunt explicabo.
+                    {details && details.about}
                     </p>
-                    <p>
-                      Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-                      aut odit aut fugit, sed quia consequuntur magni dolores
-                      eos qui ratione voluptatem sequi nesciunt. Neque porro
-                      quisquam est, qui dolorem ipsum quia dolor sit amet,
-                      consectetur, adipisci velit, sed quia non numquam eius
-                      modi tempora incidunt ut labore et dolore magnam aliquam
-                      quaerat voluptatem.
-                    </p>
-                    <p>
-                      Ut enim ad minima veniam, quis nostrum exercitationem
-                      ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
-                      commodi consequatur? Quis autem vel eum iure reprehenderit
-                      qui in ea voluptate velit esse quam nihil molestiae
-                      consequatur, vel illum qui dolorem eum fugiat quo voluptas
-                      nulla pariatur?
-                    </p>
-                    <p>
-                      Nulla dapibus dui placerat nisl non dis rhoncus cum. Dui
-                      pharetra faucibus sed sed sapien eget vestibulum ante.
-                      Hendrerit magna dis sagittis risus. Penatibus cubilia
-                      vivamus accumsan aenean Montes aliquet neque parturient.
-                      Feugiat vehicula. Risus, curae; nunc inceptos integer
-                      penatibus sollicitudin est. Dictumst dui enim proin
-                      ridiculus venenatis. Praesent pulvinar Nisl habitant nisl
-                      sed gravida venenatis Ac metus id nullam dignissim nam
-                      nisl. Aenean platea auctor fringilla. Porttitor elit
-                      curabitur vel praesent et orci purus rhoncus eros inceptos
-                      et ad torquent, conubia suscipit amet felis bibendum
-                      vulputate. Sapien proin, primis.
-                    </p>
+                   
                   </div>
                   <div className="post-tag-media">
                     <div className="row">

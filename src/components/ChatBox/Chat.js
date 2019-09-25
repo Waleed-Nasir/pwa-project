@@ -55,6 +55,15 @@ class Chat extends React.Component {
   })
     this.setState({people:obj})
   }
+  calculateAge = (dob) => {
+    if(dob != "Invalid Date"){
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms); 
+    return Math.abs(age_dt.getUTCFullYear() - 1970);}
+    else{
+      return 'N/A'
+    }
+  }
 
   render() {
     const { activeTab,chatUser,people, } = this.state
@@ -182,9 +191,9 @@ class Chat extends React.Component {
                     </div> :chatUser.Name?  <div className="chat col-lg-8"  style={{ height: '85vh',background:'#444753' }}>
                    <div className="testimonial-item">
                                     <div className="post-containre">
-                                        <span className="about-post">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {chatUser.email}</span>
-                                        <span className="about-post">Age&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {chatUser.dob?chatUser.dob:'N/A'}</span>
-                                        <span className="about-post">Number &nbsp;&nbsp;:&nbsp;&nbsp; {chatUser.number?chatUser.number:'N/A'}</span>
+                                        {/* <span className="about-post">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {chatUser.email}</span> */}
+                                        <span className="about-post">Age&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {chatUser.dob?this.calculateAge(new Date(chatUser.dob)):'N/A'}</span>
+                                        {/* <span className="about-post">Number &nbsp;&nbsp;:&nbsp;&nbsp; {chatUser.number?chatUser.number:'N/A'}</span> */}
                                         <span className="about-post">Tag-Line &nbsp;:&nbsp;&nbsp; {chatUser.tag?chatUser.tag:'N/A'}</span>
                                         <span className="about-post">Lives &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {chatUser.address?chatUser.address:'N/A'}</span>
                                         <span className="about-post">Bio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;:&nbsp;&nbsp; {chatUser.bio?chatUser.bio:'N/A'}</span>
