@@ -83,7 +83,14 @@ class CreateBlog extends Component {
       type: type,
       user
     };
-    this.props.AddBlog(blogData);
+    if (localStorage.getItem("isAuthenticated") && this.props.checkUser()) {
+      this.props.AddBlog(blogData);
+    } else {
+      this.props.showMessage({
+        message: "Only admin have access to create blog"
+      });
+      this.setState({ show: false, completed: 100 });
+    }
   };
   render() {
     const { files, completed, show, title, type, blogText } = this.state;
