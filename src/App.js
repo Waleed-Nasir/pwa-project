@@ -23,6 +23,7 @@ import { connect } from "react-redux"
 import ShowMessage from './ShowError'
 import { AuthMiddleware, MainMiddleware } from './store/middlewares';
 import CreateBlog from './components/Blog/createBlog';
+import About from './components/Home/About';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -59,6 +60,7 @@ class App extends Component {
           <Router history={History}>
             <div>
               <Route exact path="/" component={Index} {...this.props} />
+              <Route path="/about" component={About}  {...this.props} />
               <Route path="/details/:id" component={DetailsOne}  {...this.props} />
               {/* <Route path="/properties" component={Blog}  {...this.props} /> */}
               <Route path="/findhome" component={Detailstwo}  {...this.props} />

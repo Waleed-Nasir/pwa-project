@@ -103,33 +103,33 @@ class Slider extends React.Component {
 Slider.defaultProps = {
     slideData: [
         {
-            heading: "Find your  new home or rent it out secure, from anywhere.",
+            heading: " FIND YOUR NEW HOME OR RENT OT OUT - SECURE, FROM ANYWHERE",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             lmage:S2
         },
         {
-            heading: "Find your  new home or rent it out secure, from anywhere.",
+            heading: " FIND YOUR NEW HOME OR RENT OT OUT - SECURE, FROM ANYWHERE",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             lmage:S1
         }
         ,
         {
-            heading: "Find your  new home or rent it out secure, from anywhere.",
+            heading: " FIND YOUR NEW HOME OR RENT OT OUT - SECURE, FROM ANYWHERE",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             lmage:S3
         },
         {
-            heading: "Find your  new home or rent it out secure, from anywhere.",
+            heading: " FIND YOUR NEW HOME OR RENT OT OUT - SECURE, FROM ANYWHERE",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             lmage:S4
         },
         {
-            heading: "Find your  new home or rent it out secure, from anywhere.",
+            heading: " FIND YOUR NEW HOME OR RENT OT OUT - SECURE, FROM ANYWHERE",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             lmage:S5
         },
         {
-            heading: "Find your  new home or rent it out secure, from anywhere.",
+            heading: " FIND YOUR NEW HOME OR RENT OT OUT - SECURE, FROM ANYWHERE",
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             lmage:S6
         }
