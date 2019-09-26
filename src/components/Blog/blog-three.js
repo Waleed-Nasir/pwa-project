@@ -9,6 +9,15 @@ import GoTop from "../Common/GoTop";
 import React, { Component } from "react";
 
 export default class DetailsOne extends React.Component {
+  state = {
+    collapsed: true
+  };
+
+  toggleNavbar = () => {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  };
   render() {
     return (
       <NoSSR key="1">
@@ -26,6 +35,18 @@ export default class DetailsOne extends React.Component {
                     </Link>
                   </li>
                   <li className="active">Blog With Right Sidebar</li>
+                  <li className="active">
+                    <Link href="/createBlog">
+                      <a
+                        onClick={e => {
+                          this.toggleNavbar(e);
+                          window.location.pathname = "/createBlog";
+                        }}
+                      >
+                        Create Blog
+                      </a>
+                    </Link>
+                  </li>
                 </ol>
               </div>
             </div>
