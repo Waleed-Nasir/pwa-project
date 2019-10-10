@@ -129,16 +129,6 @@ class Navigation extends React.Component {
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                     <div
-                        onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/addpost'}}
-                        className="nav-link"
-                        href='/'
-                    >
-                        Home
-                            </div>
-
-                </li>
-                <li className="nav-item">
-                    <div
                         onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/about'}}
                         className="nav-link"
                         href='/about'

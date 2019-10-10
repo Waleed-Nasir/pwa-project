@@ -11,6 +11,15 @@ import { AuthMiddleware, MainMiddleware } from "../../store/middlewares";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
 class Peoples extends React.Component {
+  calculateAge = dob => {
+    if (dob != "Invalid Date") {
+      var diff_ms = Date.now() - dob.getTime();
+      var age_dt = new Date(diff_ms);
+      return Math.abs(age_dt.getUTCFullYear() - 1970);
+    } else {
+      return "N/A";
+    }
+  };
   render() {
     const { state, showMessage, user, history, people } = this.props;
     return (
@@ -21,9 +30,107 @@ class Peoples extends React.Component {
         <section className="top-banner-area">
           <div className="container">
             <div className="row">
+              <div className="col-md-12 col-lg-12">
+                <div className="contact-form">
+                  <form id="contactForm" onSubmit={this.onSubmit}>
+                    <div className="row">
+                      <div className="col-lg-2">
+                        <div className="form-group">
+                          <label>City</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            required={true}
+                            data-error="Please enter city"
+                            placeholder="New York City"
+                            // value={this.state.formFields.name}
+                            // onChange={this.nameChangeHandler}
+                          />
+                          <div className="help-block with-errors"></div>
+                        </div>
+                      </div>
+
+                      <div className="col-lg-2">
+                        <div className="form-group">
+                          <label>Age</label>
+                          <input
+                            type="number"
+                            className="form-control"
+                            required={true}
+                            data-error="Please enter number of rooms"
+                            placeholder="25"
+                            // value={this.state.formFields.email}
+                            // onChange={this.emailChangeHandler}
+                          />
+                          <div className="help-block with-errors"></div>
+                        </div>
+                      </div>
+                      <div className="col-lg-2">
+                        <div className="form-group">
+                          <label>No Preference</label>
+                          <input
+                            type="number"
+                            className="form-control"
+                            required={true}
+                            data-error="Please enter number of rooms"
+                            placeholder="25"
+                            // value={this.state.formFields.email}
+                            // onChange={this.emailChangeHandler}
+                          />
+                          <div className="help-block with-errors"></div>
+                        </div>
+                      </div>
+
+                      <div className="col-lg-2">
+                        <div className="form-group">
+                          <label>Last Active</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            required={true}
+                            data-error="Please enter your range"
+                            placeholder="Your Price"
+                            // value={this.state.formFields.subject}
+                            // onChange={this.subjectChangeHandler}
+                          />
+                          {/* <input type="range" min="1" max="100"  class="slider" id="myRange"></input>
+                                             <p>Value: <span id="demo"></span></p> */}
+                          <div className="help-block with-errors"></div>
+                        </div>
+                      </div>
+                      <div className="col-lg-2">
+                        <div className="form-group">
+                          <label>Gender</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            required={true}
+                            data-error="Please enter number of rooms"
+                            placeholder="Male/Female"
+                            // value={this.state.formFields.email}
+                            // onChange={this.emailChangeHandler}
+                          />
+                          <div className="help-block with-errors"></div>
+                        </div>
+                      </div>
+
+                      <div className="col-lg-2 mt-4">
+                        <div className="form-group">
+                          <button type="submit" className="default-button">
+                            Find Now...
+                            <i className="icofont-arrow-right"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div className="row">
               <div className="col-lg-6">
                 <h2 className="banner-title">
-                  Find People do Chats and much more
+                   Find People and connect
                 </h2>
               </div>
               <div className="col-lg-6">
@@ -33,7 +140,7 @@ class Peoples extends React.Component {
                       <a>Home</a>
                     </Link>
                   </li>
-                  <li className="active">Peoples</li>
+                  <li className="active">Community</li>
                 </ol>
               </div>
             </div>
@@ -65,7 +172,9 @@ class Peoples extends React.Component {
                               </span> */}
                               <span className="about-post">
                                 Age &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{" "}
-                                {PDT.dob ? PDT.dob : "N/A"}
+                                {PDT.dob
+                                  ? this.calculateAge(new Date(PDT.dob))
+                                  : "N/A"}
                               </span>
                               <span className="about-post">
                                 Lives &nbsp;:&nbsp;&nbsp;{" "}

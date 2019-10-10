@@ -31,7 +31,7 @@ class Index extends React.Component {
                     <Features />
                     {/* <Blog /> */}
                     {/* <Counter /> */}
-                    <About />
+                    {/* <About /> */}
                     <Blog />
                     {/* <Screenshots /> */}
                     {/* <Testimonial /> */}

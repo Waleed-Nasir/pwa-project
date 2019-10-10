@@ -141,7 +141,7 @@ class AddPost extends React.Component {
           <div className="row mt-5">
             <div className="col-lg-4" style={{ zIndex: 10 }}>
               <div className="contact-form">
-                <h4>Post will be like this</h4>
+                <h4>Preview will be like this</h4>
                 <div className="single-feature">
                   <div className="feature-icon">
                     <OwlCarousel

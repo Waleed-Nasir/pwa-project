@@ -60,7 +60,7 @@ class Details extends React.Component {
                       <a>Home</a>
                     </Link>
                   </li>
-                  <li className="active">Add Details</li>
+                  <li className="active">Details</li>
                 </ol>
               </div>
             </div>

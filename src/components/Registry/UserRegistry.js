@@ -128,7 +128,6 @@ class UserRegistry extends Component {
 
                 <Tab value="one" label="Sign In" style={{ background: 'rgb(20, 29, 113)', color: 'white' }} />
                 <Typography style={{ fontSize: '35px', background: 'rgb(20, 29, 113)', color: 'white' }} >
-                  &
             </Typography>
                 <Tab value="two" label="Register" style={{ background: 'rgb(20, 29, 113)', color: 'white' }} />
 
@@ -144,7 +143,6 @@ class UserRegistry extends Component {
                       <Typography variant="h5" className={classes.text} >Welcome</Typography>
                       {/* <Typography variant="h5" className={classes.text} >Why are You</Typography> */}
                       <Typography variant="h5" className={classes.text} >Waiting For</Typography>
-                      <Typography variant="h5" className={classes.text} >Get Sign in</Typography>
                     </TextLoop>
                   </Typography>
                   <div style={{height:'70px'}} ></div>

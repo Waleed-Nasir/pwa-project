@@ -998,6 +998,7 @@ section {
 }
 
 .single-feature {
+  height: 430px;
   padding: 30px 20px;
   position: relative;
   margin-bottom: 30px;
@@ -1006,6 +1007,7 @@ section {
   -webkit-transition: .5s;
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  
 }
 
 .single-feature:hover {

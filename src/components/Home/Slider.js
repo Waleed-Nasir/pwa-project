@@ -70,7 +70,7 @@ class Slider extends React.Component {
                                                                     Download
                                                                 </a> */}
                                                                 <a 
-                                                                    href="#" 
+                                                                    href="/about" 
                                                                     className={`
                                                                         slide-btn-bordered ${isVisible ? "animated fadeInDown slow opacityOne" : ""}
                                                                     `}

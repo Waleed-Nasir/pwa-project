@@ -1955,7 +1955,6 @@ section {
     padding: 100px 0 70px;
 }
 .single-blog-post {
-    background: #f5f7fb;
     padding-bottom: 20px;
     margin-bottom: 30px;
     position: relative;
@@ -2102,7 +2101,7 @@ section {
     .blog-img {
         padding: 0;
         img {
-            border-radius: 1000px 0 0 1000px;
+            height: 300px;
         }
     }
     .blog-info {
