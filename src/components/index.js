@@ -28,7 +28,7 @@ class Index extends React.Component {
                 <div>
 
                     <Slider />
-                    <Features />
+                    <Features history={this.props.history} />
                     {/* <Blog /> */}
                     {/* <Counter /> */}
                     {/* <About /> */}

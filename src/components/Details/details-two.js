@@ -155,7 +155,7 @@ class FindPROP extends React.Component {
                               
                             </OwlCarousel>
                                         <div className="post-profile">
-                                            <img src={S1} alt="client Image" height="60px !important" />
+                                            <img src={addData.user.profileImage} alt="client Image" height="60px !important" />
                                         </div>
                                     </div>
                                     <h4>{addData.title}</h4>
