@@ -3,7 +3,7 @@ import {
       SHOW_MESSAGE_SUCCESS,SHOW_MESSAGE_CALL, SIGNUP_CALL, SIGNUP_FAIL,
        SIGNUP_SUCCESS, SIGN_FAIL, SIGN_SUCCESS, SIGN_CALL,CHECK_USER_CALL,
        CHECK_USER_SUCCESS,CHECK_USER_FAIL,
-       LOGOUT_CALL,LOGOUT_FAIL,LOGOUT_SUCCESS,
+       LOGOUT_CALL,LOGOUT_FAIL,LOGOUT_SUCCESS,UPLOADED
 } from '../constants';
 var userLL= localStorage.getItem('user')
 var isAuthenticatedLL = JSON.parse(localStorage.getItem('isAuthenticated'))
@@ -12,7 +12,8 @@ const initialState = {
    isAuthenticated: isAuthenticatedLL||false,
    message:'',
    error:false,
-   user: isAuthenticatedLL&&JSON.parse(userLL) ||{}
+   user: isAuthenticatedLL&&JSON.parse(userLL) ||{},
+   userImage:''
 }
 
 export default function Auth(state = initialState, action) {
@@ -133,6 +134,43 @@ export default function Auth(state = initialState, action) {
                         error:true
                     }
                     break;
+                    case    ADD_USER_UPDATE_CALL:
+                            state = {
+                                ...state,
+                                loader: true,
+                                message: 'Updating...',
+                                error:false,
+                                userImage:[]
+                            }
+                        break;
+                    case   ADD_USER_UPDATE_SUCCESS:
+                            state = {
+                                ...state,
+                                loader: false,
+                                message: 'Updated Successfully',
+                                isAuthenticated:false,
+                                error:false
+                            }
+                            break;
+
+                    case ADD_USER_UPDATE_FAIL:
+                            state = {
+                                ...state,
+                                loader: false,
+                                message: 'Error on Update',
+                                error:false
+                            }
+                            break;
+                    case UPLOADED:
+                            state = {
+                                ...state,
+                                loader: false,
+                                message: '',
+                                error:false,
+                                userImage:action.payload
+                            }
+                    break;
+
         default:
             break;
     }

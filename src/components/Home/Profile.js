@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import Uploader from './Uploader';
 import { MainMiddleware, AuthMiddleware } from '../../store/middlewares';
+import { LinearProgress } from '@material-ui/core';
 
-
+var change = false
 class Profile extends React.Component {
     constructor(props) {
         super(props)
@@ -19,24 +20,31 @@ class Profile extends React.Component {
             bio: '',
             files: [],
             profileImage: [],
-            uid:'',
-            myadds:{}
+            uid: '',
+            myadds: {}
         }
     }
-    componentWillReceiveProps=(newProps)=>{
-        const { user } =newProps
-        const { Name, email, dob, number, tag, skill, address, bio ,profileImage,uid,myadds} = user
+    componentWillReceiveProps = (newProps) => {
+        const { user, userImage ,loader} = newProps
+        const { Name, email, dob, number, tag, skill, address, bio, profileImage, uid, myadds } = user
         // this.setState({ name:Name, email, dob:dob?dob:'', number:number?number:'', tag:tag?tag:'', skill:skill?skill:'', address:address?address:''
         // , bio:bio?bio:'' ,profileImage:profileImage?profileImage:false,uid:uid?uid:'',myadds:myadds?myadds:{}})
+        if (userImage && change && !loader) {
+            change = false
+            this.setState({ profileImage: userImage })
+        }
     }
-    componentWillMount=()=>{
-        const { user } =this.props
-        const { Name, email, dob, number, tag, skill, address, bio ,profileImage,uid,myadds} = user
-               this.setState({ name:Name, email, dob:dob?dob:'', number:number?number:'', tag:tag?tag:'', skill:skill?skill:'', address:address?address:''
-        , bio:bio?bio:'' ,profileImage:profileImage?profileImage:false,uid:uid?uid:'',myadds:myadds?myadds:{}})
+    componentWillMount = () => {
+        const { user } = this.props
+        const { Name, email, dob, number, tag, skill, address, bio, profileImage, uid, myadds } = user
+        this.setState({
+            name: Name, email, dob: dob ? dob : '', number: number ? number : '', tag: tag ? tag : '', skill: skill ? skill : '', address: address ? address : ''
+            , bio: bio ? bio : '', profileImage: profileImage ? profileImage : false, uid: uid ? uid : '', myadds: myadds ? myadds : {}
+        })
     }
     handleonChamhe = (e) => {
         // FileList to Array
+        change = true
         let files = e.target.files[0];
         // File Reader for Each file and and update state arrays
         let reader = new FileReader();
@@ -45,7 +53,7 @@ class Profile extends React.Component {
                 files: files,
                 // profileImage: reader.result
             }));
-            this.props.UploadUserPic(reader.result)
+            this.props.UploadUserPic(files)
         }
         reader.readAsDataURL(files);
     }
@@ -55,13 +63,13 @@ class Profile extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        const {myadds,uid, name, email, dob, number, tag, skill, address, bio,profileImage } = this.state
-        let data = {myadds:myadds?myadds:{}, uid, Name: name, email, dob, number, tag, skill, address, bio,profileImage }
+        const { myadds, uid, name, email, dob, number, tag, skill, address, bio, profileImage } = this.state
+        let data = { myadds: myadds ? myadds : {}, uid, Name: name, email, dob, number, tag, skill, address, bio, profileImage }
         this.props.Update(data)
 
     }
     render() {
-        const { name, email, dob, number, tag, skill, address, bio ,profileImage} = this.state
+        const { name, email, dob, number, tag, skill, address, bio, profileImage } = this.state
         return (
             <section id="testimonial" className="testimonial-section ">
                 <div className="container">
@@ -74,7 +82,7 @@ class Profile extends React.Component {
                                 </p>
                                 <div className="testimonial-content">
                                     <div className="pic">
-                                        <img src={profileImage&&profileImage.length>0?profileImage:require("../../images/client/1.png")} alt="client Image" />
+                                        <img src={profileImage && profileImage.length > 0 ? profileImage : require("../../images/client/1.png")} alt="client Image" />
                                     </div>
                                     <h3 className="title">{name}</h3>
                                     <span className="post">{skill}</span>
@@ -219,9 +227,11 @@ class Profile extends React.Component {
                                         {profileImage && profileImage.length > 0 && <div style={{ width: 120, height: 120, border: '1px solid', margin: 5 }}>
                                             <img src={profileImage} style={{ width: 120, height: 120 }} />
                                         </div>}
-                                        <input required={profileImage && profileImage.length > 0 ?false:true} className="form-control" onChange={(e) => this.handleonChamhe(e)} label='sssss' type="file" />
+                                        <input required={profileImage && profileImage.length > 0 ? false : true} className="form-control" onChange={(e) => this.handleonChamhe(e)} label='sssss' type="file" />
                                     </div>
-
+                                    {this.props.loader && (
+                                        <LinearProgress  variant={"query"} />
+                                    )}
                                     <div className="text-center">
                                         <button type="submit" className="default-button">
                                             Update
@@ -244,12 +254,14 @@ const mapStateToProps = (state) => {
     return {
         Buttons: state.Main.Buttons,
         user: state.Auth.user,
+        loader: state.Auth.loader,
+        userImage: state.Auth.userImage
     }
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        Update: (data) =>{dispatch(MainMiddleware.userUpdate(data))},
-        UploadUserPic: ()=>{dispatch(AuthMiddleware.UploadUserPic())}
+        Update: (data) => { dispatch(MainMiddleware.userUpdate(data)) },
+        UploadUserPic: (e) => { dispatch(AuthMiddleware.UploadUserPic(e)) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

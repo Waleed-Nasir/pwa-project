@@ -1,4 +1,4 @@
-import { AuthActions } from '../actions';
+import { AuthActions, Actions } from '../actions';
 import firebase, { database } from '../../config'
 
 export default class AuthMiddleware {
@@ -86,6 +86,7 @@ export default class AuthMiddleware {
     }
     static UploadUserPic(file,i) {
         return (dispatch) => {
+            dispatch(Actions.AddUserCall())
             const ref = firebase.storage().ref();
             const name = (+new Date()) + '-' + file.name;
             const metadata = {
