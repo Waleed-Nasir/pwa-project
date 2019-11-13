@@ -31,12 +31,30 @@ const options = {
     }
 }
 class FindPROP extends React.Component {
+    constructor(){
+        super()
+        this.state={
+            rooms:0 , city:'' , price:0
+        }
+        this.textRoom = React.createRef();
+        this.textCity = React.createRef();
+        this.textPrice = React.createRef();
+    }
     componentWillMount=()=>{
         // this.props.getPost()
     }
+    doUpdate=(e)=>{
+        e.preventDefault()
+this.setState({city:this.textCity.current.value,rooms:this.textRoom.current.value,price:this.textPrice.current.value})
+    }
     render() {
         const { state, showMessage,adds,history } = this.props
-        console.log("data", this.props)
+        const {rooms , city , price} = this.state
+        // var first = rooms > 0?true:false
+        // var second = city.length > 0?true:false
+        // var third = price.length > 0?true:false
+        // var doPri = first && second && third ? 3: first && second ? 2 :first ? 1 : 0
+       var mapData= Object.values(adds).filter((data)=>(price >0 ? price == data.price :true) && (rooms > 0 ?data.rooms == rooms:true) && data.city.toUpperCase().includes(city.toUpperCase()))
         return (
             <NoSSR key="1">
                 {/* <Preloader fadeDuration={1000}>
@@ -47,7 +65,7 @@ class FindPROP extends React.Component {
                         <div className="row">
                             <div className="col-md-12 col-lg-12">
                                 <div className="contact-form">
-                                    <form id="contactForm" onSubmit={this.onSubmit}>
+                                    <form id="contactForm">
                                         <div className="row">
                                             <div className="col-lg-3">
                                                 <div className="form-group">
@@ -55,9 +73,10 @@ class FindPROP extends React.Component {
                                                     <input
                                                         type="text"
                                                         className="form-control"
-                                                        required={true}
+                                                       
                                                         data-error="Please enter city"
                                                         placeholder="City"
+                                                        ref={this.textCity}
                                                     // value={this.state.formFields.name}
                                                     // onChange={this.nameChangeHandler}
                                                     />
@@ -71,9 +90,11 @@ class FindPROP extends React.Component {
                                                     <input
                                                         type="number"
                                                         className="form-control"
-                                                        required={true}
+                                                       
                                                         data-error="Please enter number of rooms"
                                                         placeholder="E.g 3"
+                                                        ref={this.textRoom}
+
                                                     // value={this.state.formFields.email}
                                                     // onChange={this.emailChangeHandler}
                                                     />
@@ -83,13 +104,14 @@ class FindPROP extends React.Component {
 
                                             <div className="col-lg-3">
                                                 <div className="form-group">
-                                                    <label>Price</label>
+                                                    <label>Max Price</label>
                                                     <input
                                                         type="number"
                                                         className="form-control"
-                                                        required={true}
-                                                        data-error="Please enter your range"
+                                                       
+                                                        data-error="Please enter max your range"
                                                         placeholder="Your Price"
+                                                        ref={this.textPrice}
                                                     // value={this.state.formFields.subject}
                                                     // onChange={this.subjectChangeHandler}
                                                     />
@@ -102,7 +124,7 @@ class FindPROP extends React.Component {
                                             <div className="col-lg-3 mt-4">
                                                 <div className="form-group">
 
-                                                    <button type="submit" className="default-button">
+                                                    <button onClick={(e)=>this.doUpdate(e)} className="default-button">
                                                         Find Now...
                                                 <i className="icofont-arrow-right"></i>
                                                     </button>
@@ -138,8 +160,8 @@ class FindPROP extends React.Component {
                                  <div className="container"> 
                                   <h2  className="banner-title">Please wait...</h2>
                             <LinearProgress  variant={"query"}  />
-                            </div>:Object.values(adds).map(addData=>(
-                             <div className='col-lg-3 col-md-6'>
+                            </div>:mapData&&mapData.map(addData=>
+                             (<div className='col-lg-3 col-md-6'>
                                 <div className="single-feature">
                                     <div className="feature-icon">
                                     <OwlCarousel 
@@ -175,6 +197,10 @@ class FindPROP extends React.Component {
                                
                                     <h2>Sorry there is no add Avilabel</h2>
                             </div>}
+                            {Object.keys(adds).length&&mapData.length<1&& <div className='col-lg-4'>
+                               
+                               <h2>Sorry there is no add Avilabel</h2>
+                       </div>}
                            
                         </div>
                     </div>

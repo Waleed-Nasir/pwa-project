@@ -84,4 +84,22 @@ export default class AuthMiddleware {
                  dispatch(AuthActions.ShowMassgaeSuccess({message:err}))})
         }
     }
+    static UploadUserPic(file,i) {
+        return (dispatch) => {
+            const ref = firebase.storage().ref();
+            const name = (+new Date()) + '-' + file.name;
+            const metadata = {
+                contentType: file.type
+            };
+            const task = ref.child(name).put(file, metadata);
+            task
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then((url) => {
+                firebase.database().ref(`content/`).push(url)
+                // dispatch(AuthActions.ShowMassgaeSuccess({ message: `Content Uploaded`})) 
+                dispatch(AuthActions.Uploaded(url))
+            })
+            .catch((err)=> dispatch(AuthActions.ShowMassgaeSuccess({ message: err})) );
+}
+}
 }

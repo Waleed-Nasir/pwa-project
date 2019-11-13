@@ -2,7 +2,7 @@ import OwlCarousel from 'react-owl-carousel3';
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import Uploader from './Uploader';
-import { MainMiddleware } from '../../store/middlewares';
+import { MainMiddleware, AuthMiddleware } from '../../store/middlewares';
 
 
 class Profile extends React.Component {
@@ -43,8 +43,9 @@ class Profile extends React.Component {
         reader.onloadend = () => {
             this.setState(prevState => ({
                 files: files,
-                profileImage: reader.result
+                // profileImage: reader.result
             }));
+            this.props.UploadUserPic(reader.result)
         }
         reader.readAsDataURL(files);
     }
@@ -247,7 +248,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        Update: (data) =>{dispatch(MainMiddleware.userUpdate(data))}
+        Update: (data) =>{dispatch(MainMiddleware.userUpdate(data))},
+        UploadUserPic: ()=>{dispatch(AuthMiddleware.UploadUserPic())}
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
