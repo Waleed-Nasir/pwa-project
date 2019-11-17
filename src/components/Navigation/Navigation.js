@@ -190,6 +190,16 @@ class Navigation extends React.Component {
                             </div>
 
                 </li>}
+                {user&& user.email&& user.email.includes('JosipKustera-admin@houseit.com') && <li className="nav-item">
+                    <div
+                        onClick={!user.number || !user.dob?()=>showMessage({message:'Sorry you need to compelet your profile first'}):(e)=>{this.toggleNavbar(e);window.location.pathname = '/addpost'}}
+                        className="nav-link"
+
+                    >
+                        Create Blog
+                            </div>
+
+                </li>}
                 {adb && <li className="nav-item">
                     <div
                         onClick={(e)=>{this.toggleNavbar(e);window.location.pathname = '/Profile'}}
@@ -204,7 +214,7 @@ class Navigation extends React.Component {
                 {adb ?
                     <li className="nav-item">
                         <div
-                            onClick={() => this.props.SignOut(user.user)}
+                            onClick={() => this.props.SignOut(user)}
                             className="nav-link"
                         >
                             Logout

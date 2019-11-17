@@ -82,7 +82,7 @@ export default class AuthMiddleware {
             dispatch(AuthActions.LogoutSuccess())
             }
             ).catch((err)=>{
-            dispatch(AuthActions.LogoutFail({message:err}))
+            dispatch(AuthActions.LogoutFailed({message:err}))
                 dispatch(AuthActions.ShowMassgaeCall());
                  dispatch(AuthActions.ShowMassgaeSuccess({message:err}))})
         }
