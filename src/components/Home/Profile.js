@@ -25,7 +25,7 @@ class Profile extends React.Component {
         }
     }
     componentWillReceiveProps = (newProps) => {
-        const { user, userImage ,loader} = newProps
+        const { user, userImage, loader } = newProps
         const { Name, email, dob, number, tag, skill, address, bio, profileImage, uid, myadds } = user
         // this.setState({ name:Name, email, dob:dob?dob:'', number:number?number:'', tag:tag?tag:'', skill:skill?skill:'', address:address?address:''
         // , bio:bio?bio:'' ,profileImage:profileImage?profileImage:false,uid:uid?uid:'',myadds:myadds?myadds:{}})
@@ -63,8 +63,8 @@ class Profile extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        const { myadds, uid, name, email, dob, number, tag, skill, address, bio, profileImage } = this.state
-        let data = { myadds: myadds ? myadds : {}, uid, Name: name, email, dob, number, tag, skill, address, bio, profileImage }
+        const { myadds, uid, name, email, dob, number, tag, skill, address, bio, profileImage,gender } = this.state
+        let data = { myadds: myadds ? myadds : {}, uid, gender,Name: name, email, dob, number, tag, skill, address, bio, profileImage }
         this.props.Update(data)
 
     }
@@ -163,89 +163,122 @@ class Profile extends React.Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="form-group">
-                                        <label>Slogan / Tag line</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            required={true}
-                                            data-error="Please enter your subject"
-                                            placeholder="Your subject"
-                                            value={this.state.tag}
-                                            name='tag'
-                                            onChange={this.ChangeHandler}
-                                        />
-                                        <div className="help-block with-errors"></div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Skill`s</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            required={true}
-                                            data-error="Please enter your subject"
-                                            placeholder="Your subject"
-                                            value={this.state.skill}
-                                            name='skill'
-                                            onChange={this.ChangeHandler}
-                                        />
-                                        <div className="help-block with-errors"></div>
-                                    </div>
+                                    <div className="row">
+                                        <div className="col-lg-8">
+                                            <label>Slogan / Tag line</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                required={true}
+                                                data-error="Please enter your subject"
+                                                placeholder="Your subject"
+                                                value={this.state.tag}
+                                                name='tag'
+                                                onChange={this.ChangeHandler}
+                                            />
+                                            <div className="help-block with-errors"></div>
+                                        </div>
+                                    <div className="col-lg-4">
 
-                                    <div className="form-group">
-                                        <label>Location</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            required={true}
-                                            data-error="Please enter your subject"
-                                            placeholder="Your subject"
-                                            value={this.state.address}
-                                            name='address'
-                                            onChange={this.ChangeHandler}
-                                        />
-                                        <div className="help-block with-errors"></div>
+                                        <div className="form-group">
+                                            <label>gender</label>
+                                            <select name={'gender'} onChange={this.ChangeHandler} className="form-control" style={{ padding: 10 }}>
+                                                <option className="form-control" value="Male">Male</option>
+                                                <option className="form-control" value="Female">Female</option>
+                                            </select>
+                                            <div className="help-block with-errors"></div>
+                                        </div>
                                     </div>
+                                    </div>
+                                    {/* </div> */}
+                                {/* <select  ref={this.gender} className="form-control" style={{padding:10}}>
+                            <option className="form-control" value="both">All</option>
+                            <option className="form-control" value="Male">Male</option>
+                            <option className="form-control" value="Female">Female</option>
+                          </select> */}
+                                <div className="form-group">
+                                    <label>Slogan / Tag line</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        required={true}
+                                        data-error="Please enter your subject"
+                                        placeholder="Your subject"
+                                        value={this.state.tag}
+                                        name='tag'
+                                        onChange={this.ChangeHandler}
+                                    />
+                                    <div className="help-block with-errors"></div>
+                                </div>
+                                <div className="form-group">
+                                    <label>Skill`s</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        required={true}
+                                        data-error="Please enter your subject"
+                                        placeholder="Your subject"
+                                        value={this.state.skill}
+                                        name='skill'
+                                        onChange={this.ChangeHandler}
+                                    />
+                                    <div className="help-block with-errors"></div>
+                                </div>
 
-                                    <div className="form-group">
-                                        <label>Biography / about </label>
-                                        <textarea
-                                            className="form-control"
-                                            id="message"
-                                            rows="4"
-                                            required={true}
-                                            data-error="Write your message"
-                                            placeholder="Enter your message here..."
-                                            value={this.state.bio}
-                                            name='bio'
-                                            onChange={this.ChangeHandler}
-                                        />
-                                        <div className="help-block with-errors"></div>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Upload Profile Pic</label>
-                                        {profileImage && profileImage.length > 0 && <div style={{ width: 120, height: 120, border: '1px solid', margin: 5 }}>
-                                            <img src={profileImage} style={{ width: 120, height: 120 }} />
-                                        </div>}
-                                        <input required={profileImage && profileImage.length > 0 ? false : true} className="form-control" onChange={(e) => this.handleonChamhe(e)} label='sssss' type="file" />
-                                    </div>
-                                    {this.props.loader && (
-                                        <LinearProgress  variant={"query"} />
-                                    )}
-                                    <div className="text-center">
-                                        <button type="submit" className="default-button">
-                                            Update
+                                <div className="form-group">
+                                    <label>Location</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        required={true}
+                                        data-error="Please enter your subject"
+                                        placeholder="Your subject"
+                                        value={this.state.address}
+                                        name='address'
+                                        onChange={this.ChangeHandler}
+                                    />
+                                    <div className="help-block with-errors"></div>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Biography / about </label>
+                                    <textarea
+                                        className="form-control"
+                                        id="message"
+                                        rows="4"
+                                        required={true}
+                                        data-error="Write your message"
+                                        placeholder="Enter your message here..."
+                                        value={this.state.bio}
+                                        name='bio'
+                                        onChange={this.ChangeHandler}
+                                    />
+                                    <div className="help-block with-errors"></div>
+                                </div>
+                                <div className="form-group">
+                                    <label>Upload Profile Pic</label>
+                                    {profileImage && profileImage.length > 0 && <div style={{ width: 120, height: 120, border: '1px solid', margin: 5 }}>
+                                        <img src={profileImage} style={{ width: 120, height: 120 }} />
+                                    </div>}
+                                    <input required={profileImage && profileImage.length > 0 ? false : true} className="form-control" onChange={(e) => this.handleonChamhe(e)} label='sssss' type="file" />
+                                </div>
+                                {this.props.loader && (
+                                    <LinearProgress variant={"query"} />
+                                )}
+                                <div className="text-center">
+                                    <button type="submit" className="default-button">
+                                        Update
                                         </button>
-                                        <div id="msgSubmit" className="h3 text-center hidden"></div>
-                                        <div className="clearfix"></div>
-                                    </div>
+                                    <div id="msgSubmit" className="h3 text-center hidden"></div>
+                                    <div className="clearfix"></div>
+                                </div>
                                 </form>
 
-                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+                </div>
+            </section >
         );
     }
 }
