@@ -118,6 +118,16 @@ static AddBlog(payload) {
         )
     }
 }
+static Blogs() {
+    return (dispatch) => {
+        dispatch(Actions.getBlogCall())
+      firebase.database().ref(`blogs/`).on('value', (adds) =>
+        {
+            var getUser = adds.val();
+            dispatch(Actions.getBlogSuccess(getUser))
+        })
+}
+}
 }
 
 

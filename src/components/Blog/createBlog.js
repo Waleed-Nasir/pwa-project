@@ -14,7 +14,18 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import OwlCarousel from "react-owl-carousel3";
 import NoImage from "../../images/NoImage.jpg";
 import Uploader from "../Home/Uploader";
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
 
+var yyyy = today.getFullYear();
+if (dd < 10) {
+  dd = '0' + dd;
+} 
+if (mm < 10) {
+  mm = '0' + mm;
+} 
+var todayDatw = dd + '/' + mm + '/' + yyyy;
 const options = {
   items: 1,
   nav: false,
@@ -81,16 +92,17 @@ class CreateBlog extends Component {
       images: uploaded,
       title: title,
       type: type,
+      date:todayDatw,
       user
     };
-    if (localStorage.getItem("isAuthenticated") && this.props.checkUser()) {
+    // if (localStorage.getItem("isAuthenticated") && this.props.checkUser()) {
       this.props.AddBlog(blogData);
-    } else {
-      this.props.showMessage({
-        message: "Only admin have access to create blog"
-      });
+    // } else {
+    //   this.props.showMessage({
+    //     message: "Only admin have access to create blog"
+    //   });
       this.setState({ show: false, completed: 100 });
-    }
+    // }
   };
   render() {
     const { files, completed, show, title, type, blogText } = this.state;

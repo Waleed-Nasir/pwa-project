@@ -30,3 +30,6 @@ export const SEND_MESSAGE_FAIL = 'SEND_MESSAGE_FAIL';
 export const ADD_BLOG_CALL = "ADD_BLOG_CALL";
 export const ADD_BLOG_SUCCESS = "ADD_BLOG_SUCCESS";
 export const ADD_BLOG_FAIL = "ADD_BLOG_FAIL";
+export const GET_BLOG_SUCCESS = "GET_BLOG_SUCCESS";
+export const GET_BLOG_CALL = "GET_BLOG_CALL";
+            

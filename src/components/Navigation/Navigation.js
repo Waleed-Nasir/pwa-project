@@ -204,7 +204,7 @@ class Navigation extends React.Component {
                 {adb ?
                     <li className="nav-item">
                         <div
-                            onClick={() => this.props.SignOut()}
+                            onClick={() => this.props.SignOut(user.user)}
                             className="nav-link"
                         >
                             Logout
@@ -268,7 +268,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        SignOut: () => { dispatch(AuthMiddleware.SignOut()) },
+        SignOut: (user) => { dispatch(AuthMiddleware.SignOut(user)) },
         showMessage: (dta) => { dispatch(AuthMiddleware.ShowMessage(dta)) },
     }
 }

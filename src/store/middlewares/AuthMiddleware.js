@@ -15,7 +15,8 @@ export default class AuthMiddleware {
                     Name,
                     email,
                     password,
-                    uid:user.user.uid
+                    uid:user.user.uid,
+                    active:true
                 })
                 localStorage.setItem('user',JSON.stringify({ email, Name,uid:user.user.uid}))
                 dispatch(AuthActions.SignUpSuccess({message:'SignUp Success full'}))
@@ -31,6 +32,7 @@ export default class AuthMiddleware {
             dispatch(AuthActions.SignInCall())
             await  firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
                 localStorage.setItem('UID',user.user.uid)
+                firebase.database().ref('/users/').child(user.user.uid).set({active:true })
                 firebase.database().ref(`users/${user.user.uid}`).on('value',async (usern) => {
                     let data = await usern.val()
                     // data = Object.values(data)
@@ -70,10 +72,11 @@ export default class AuthMiddleware {
                     dispatch(AuthActions.ShowMassgaeSuccess(data))
         }
     }
-    static SignOut() {
+    static SignOut(user) {
         return  (dispatch) => {
             dispatch(AuthActions.LogoutCall())
             firebase.auth().signOut().then((SC)=>{
+                firebase.database().ref('/users/').child(user.uid).set({active:false })
                 localStorage.setItem('user','{}')
                 localStorage.setItem('isAuthenticated',false)
             dispatch(AuthActions.LogoutSuccess())

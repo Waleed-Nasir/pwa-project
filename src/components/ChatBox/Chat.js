@@ -23,8 +23,21 @@ class Chat extends React.Component {
       this.setState({chatUser:newProps.people[chatUser.uid]})
     }
   }
-  componentWillMounts=()=>{
+  componentWillMount=()=>{
+    // setTimeout(() => {
+      // if(this.props.match.params.id && this.props.people && this.props.people[this.props.match.params.id]){
+        // this.setState({chatUser:this.props.people[this.props.match.params.id]})
+      // }
+    // }, 2000);
     this.setState({people:this.props.people})
+  }
+  componentDidMount=()=>{
+    setTimeout(() => {
+    if(this.props.match.params.id && this.props.people && this.props.people[this.props.match.params.id]){
+      this.setState({chatUser:this.props.people[this.props.match.params.id]})
+      }
+    }, 2000);
+
   }
   handleTabs = (e) => {
     this.setState({ activeTab: e })
@@ -90,12 +103,13 @@ class Chat extends React.Component {
                                   <h4  className="banner-title">Please wait...</h4>
                             <LinearProgress  variant={"query"}  />
                             </div>:user.messages&&Object.keys(user.messages).map(PDT=>(
-                     people[PDT]&&<li className="clearfix "  style={{background:chatUser.uid === PDT&&'#80808059'}} onClick={() => this.handleChat(people[PDT])} >
+                              people[PDT]&&<li className="clearfix "  style={{background:chatUser.uid === PDT&&'#80808059'}} onClick={() => this.handleChat(people[PDT])} >
                        <img src={people[PDT]&&people[PDT].profileImage?people[PDT]&&people[PDT].profileImage:require("../../images/client/1.png")} alt="avatar"  class="PPic"/>
                        <div className="about">
                          <div className="name">{people[PDT]&&people[PDT].Name}</div>
                          <div className="status">
-                           <i className="icofont-circled-down offline"></i> offline
+                           <i className={people[PDT]&&people[PDT].active?"icofont-circled-down online":"icofont-circled-down offline"}></i>{people[PDT]&&people[PDT].active}
+                            
                            </div>
                        </div>
                      </li>
@@ -112,7 +126,7 @@ class Chat extends React.Component {
                        <div className="about">
                          <div className="name">{PDT.Name}</div>
                          <div className="status">
-                           <i className="icofont-circled-down offline"></i> offline
+                         <i className={PDT.active?"icofont-circled-down online":"icofont-circled-down offline"}></i>{PDT.active?"Online":"Offline"}
                            </div>
                        </div>
                      </li>)):""}
@@ -209,7 +223,7 @@ class Chat extends React.Component {
                                         <span className="post">{chatUser.skill?chatUser.skill:'N/A'}</span>
                                         <div
                                          className="default-button" style={{marginTop:25,height:30,paddingTop:5,cursor: 'pointer'}}
-                                          onClick={() =>{ this.handleChat(chatUser); this.handleTabs(1)}} 
+                                          onClick={() =>{ this.handleChat(chatUser);window.history.pushState('', '',(chatUser.uid));this.handleTabs(1)}} 
                                          >
                                      Start Chat
                                     </div>

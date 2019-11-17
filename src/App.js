@@ -13,7 +13,8 @@ import Index from './components';
 import Layout from './components/Layout';
 import DetailsOne from './components/Details/details-one';
 import Detailstwo from './components/Details/details-two';
-import Blog from './components/Blog/blog-three';
+import BlogDetails from './components/Blog/BlogDetails';
+import Blog from './components/Blog/Blog';
 import Registry from './components/Registry/Register';
 import Profile from './components/Home/Profile';
 import AddPost from './components/Home/AddPost';
@@ -39,6 +40,7 @@ class App extends Component {
    !localStorage.getItem('isAuthenticated') &&this.props.checkUser()
     this.props.getPost()
     this.props.GetPeoples()
+    this.props.GetBlogs()
   }
   componentWillReceiveProps = (newProps) => {
     const { state } = newProps
@@ -61,6 +63,7 @@ class App extends Component {
             <div>
               <Route exact path="/" component={Index} {...this.props} />
               <Route path="/about" component={About}  {...this.props} />
+              <Route path="/BlogDetails/:id" component={BlogDetails}  {...this.props} />
               <Route path="/details/:id" component={DetailsOne}  {...this.props} />
               {/* <Route path="/properties" component={Blog}  {...this.props} /> */}
               <Route path="/findhome" component={Detailstwo}  {...this.props} />
@@ -94,7 +97,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     checkUser: () => {dispatch(AuthMiddleware.CheckCurrentUser())},    
     getPost:()=>{dispatch(MainMiddleware.GetAdds())},
-    GetPeoples:()=>{dispatch(MainMiddleware.GetPeoples())}
+    GetPeoples:()=>{dispatch(MainMiddleware.GetPeoples())},
+    GetBlogs:()=>{dispatch(MainMiddleware.Blogs())},
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

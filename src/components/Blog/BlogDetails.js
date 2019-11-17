@@ -9,6 +9,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { AuthMiddleware, MainMiddleware } from "../../store/middlewares";
 import OwlCarousel from "react-owl-carousel3";
+
 const options = {
   items: 1,
   nav: true,
@@ -23,41 +24,47 @@ const options = {
     "<i class='icofont-long-arrow-right'></i>"
   ]
 };
-class Details extends React.Component {
+class BlogDetails extends React.Component {
   state = {
     details: {}
   };
 
   componentWillReceiveProps(nextProps) {
-    const abc = nextProps && nextProps.adds;
-    for (var property in abc) {
-      if (abc.hasOwnProperty(property)) {
-        console.log(abc[property]);
-        const detailsObject = abc[property];
-        this.setState({
-          details: {...detailsObject}
-        });
+    const abc = nextProps && nextProps.blogslist;
+    console.log(abc, "nextProps")
+    setTimeout(() => {
+      if (nextProps.match.params.id && abc && abc[nextProps.match.params.id]) {
+        this.setState({ details: abc[nextProps.match.params.id] })
       }
-    }
-  }
-
-  calculateAge = (dob) => {
-    if(dob != "Invalid Date"){
-    var diff_ms = Date.now() - dob.getTime();
-    var age_dt = new Date(diff_ms); 
-    return Math.abs(age_dt.getUTCFullYear() - 1970);}
-    else{
-      return 'N/A'
-    }
+    }, 2000);
+    // for (var property in abc) {
+    //   if (abc.hasOwnProperty(property)) {
+    //     const detailsObject = abc[property];
+    //     this.setState({
+    //       details: { ...detailsObject }
+    //     });
+    //   }
+    // }
   }
   componentDidMount = () => {
     setTimeout(() => {
-      if (this.props.match.params.id && this.props.adds && this.props.adds[this.props.match.params.id]) {
-        this.setState({ details: this.props.adds[this.props.match.params.id] })
+      if (this.props.match.params.id && this.props.blogslist && this.props.blogslist[this.props.match.params.id]) {
+        this.setState({ details: this.props.blogslist[this.props.match.params.id] })
       }
     }, 2000);
 
   }
+  calculateAge = (dob) => {
+    if (dob != "Invalid Date") {
+      var diff_ms = Date.now() - dob.getTime();
+      var age_dt = new Date(diff_ms);
+      return Math.abs(age_dt.getUTCFullYear() - 1970);
+    }
+    else {
+      return 'N/A'
+    }
+  }
+
   render() {
     const details = this.state && this.state.details;
     const user = details && details.user;
@@ -70,8 +77,7 @@ class Details extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-lg-6">
-                   
-                <h2 className="banner-title"> {details.title} Details ....</h2>
+                <h2 className="banner-title">... Details</h2>
               </div>
               <div className="col-lg-6">
                 <ol className="breadcrumb">
@@ -106,10 +112,12 @@ class Details extends React.Component {
                     >
                       <div className="pic">
                         <img
-                          src={user&&user.profileImage}
+                          src={user && user.profileImage && user.profileImage}
                           alt="client Image"
                         />
+                        )}
                       </div>
+
 
                       <h3 className="title">{user && user.Name}</h3>
                       <span className="post">{user && user.skills}</span>
@@ -118,32 +126,24 @@ class Details extends React.Component {
                           Email &nbsp;&nbsp;:&nbsp;&nbsp; {user && user.email}
                         </span>
                         <span className="post">
-                          Phone :&nbsp;&nbsp; {user && user.number}
+                          Skill :&nbsp;&nbsp; {user && user.skill}
                         </span>
                         <span className="post">
-                          Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; { this.calculateAge(new Date(user && user.dob))}
+                          Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {this.calculateAge(new Date(user && user.dob))}
                         </span>
                         <span className="post">Live in :&nbsp;&nbsp;{user && user.address}</span>
+
                       </div>
                     </div>
                   </div>
                   <div className="recent-post"></div>
                   <h4 className="blog-sidebar-title">Post Details</h4>
-                  <div className="post-containre">
-                    <span className="about-post">Country :&nbsp;&nbsp; {details && details.country}</span>
-                    <span className="about-post">City :&nbsp;&nbsp; {details && details.city}</span>
-                    <span className="about-post">Area Code :&nbsp;&nbsp; {details && details.areacode}</span>
-                    <span className="about-post">Address :&nbsp;&nbsp; {details && details.address}</span>
-                    <span className="about-post">Slogan :&nbsp;&nbsp; {details && details.slogan}</span>
-                      <span className="about-post">BathRoom :&nbsp;&nbsp; {details && details.BathRoom}</span>
-                      <span className="about-post">Hosue for :&nbsp;&nbsp; {details && details.type}</span>
-                    <span className="about-post">
-                      Room &nbsp;:&nbsp;&nbsp; {details && details.rooms}
-                    </span>
-                    <span className="about-post">
-                      Price &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{details && details.price}$
-                    </span>
+                  <div className="single-blog-details">
+                    <div className="single-blog-img">
+                      <div className="single-blog-date">{details.date}</div>
+                    </div>
                   </div>
+
                 </div>
               </div>
 
@@ -173,7 +173,7 @@ class Details extends React.Component {
                   </div>
                   <div className="details-text-area">
                     <p>
-                      {details && details.about}
+                      {details && details.blogText}
                     </p>
 
                   </div>
@@ -218,6 +218,129 @@ class Details extends React.Component {
                     </div>
                   </div>
                 </div>
+
+                {/* <div className="all-comments-content">
+                  <h4 className="comment-title">Comments (03)</h4>
+                  <div className="comment mb-50">
+                    <img
+                      src={require("../../images/blog/comment-person1.jpg")}
+                      alt="blog"
+                    />
+                    <div className="comment-details">
+                      <h5>
+                        Jonson Smith <span>20 Mar 2019 at 11.00 AM</span>
+                      </h5>
+                      <p>
+                        ed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem
+                        aperiam.
+                      </p>
+                      <Link href="#">
+                        <a className="replay">
+                          <i className="icofont-reply"></i> Replay
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="comment mb-50 reply-comment">
+                    <img
+                      src={require("../../images/blog/comment-person2.jpg")}
+                      alt="blog"
+                    />
+                    <div className="comment-details reply-comment-details">
+                      <h5>
+                        Jonson Smith <span>20 Mar 2019 at 11.00 AM</span>
+                      </h5>
+                      <p>
+                        ed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem
+                        aperiam.
+                      </p>
+                      <Link href="#">
+                        <a className="replay">
+                          <i className="icofont-reply"></i> Replay
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="comment">
+                    <img
+                      src={require("../../images/blog/comment-person3.jpg")}
+                      alt="blog"
+                    />
+                    <div className="comment-details">
+                      <h5>
+                        Jonson Smith <span>20 Mar 2019 at 11.00 AM</span>
+                      </h5>
+                      <p>
+                        ed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem
+                        aperiam.
+                      </p>
+                      <Link href="#">
+                        <a className="replay">
+                          <i className="icofont-reply"></i> Replay
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="comment-form">
+                  <h4 className="comment-title">Post Your Comment</h4>
+                  <form method="post" action="#">
+                    <div className="row">
+                      <div className="col-lg-6">
+                        <input
+                          className="form-control"
+                          id="name"
+                          name="name"
+                          placeholder="Name"
+                          type="text"
+                          required={true}
+                        />
+                      </div>
+                      <div className="col-lg-6">
+                        <input
+                          className="form-control"
+                          id="email"
+                          name="email"
+                          placeholder="Email"
+                          type="email"
+                          required={true}
+                        />
+                      </div>
+                      <div className="col-lg-12">
+                        <input
+                          className="form-control"
+                          id="website_url"
+                          name="website_url"
+                          placeholder="Website URL"
+                          type="text"
+                          required={true}
+                        />
+                      </div>
+                      <div className="col-lg-12">
+                        <textarea
+                          className="form-control"
+                          rows="5"
+                          id="message"
+                          name="message"
+                          placeholder="Type Comments..."
+                          required={true}
+                        />
+                      </div>
+                      <div className="col-lg-12">
+                        <div className="text-center">
+                          <button type="submit" className="default-button">
+                            Post Comment
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div> */}
             </div>
             </div>
           </div>
@@ -237,9 +360,7 @@ class Details extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    Buttons: state.Main.Buttons,
-    Text: state.Main.Text,
-    adds: state.Main.addpost
+    blogslist: state.Main.blogslist,
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -253,4 +374,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Details);
+)(BlogDetails);

@@ -9,7 +9,9 @@ import {
   SEND_MESSAGE_FAIL,
   ADD_BLOG_CALL,
   ADD_BLOG_SUCCESS,
-  ADD_BLOG_FAIL
+  ADD_BLOG_FAIL,
+  GET_BLOG_CALL,
+  GET_BLOG_SUCCESS
 } from "../constants";
 
 const initialState = {
@@ -17,7 +19,8 @@ const initialState = {
   uploaded: [],
   people: {},
   addBlog: [],
-  showError: {}
+  showError: {},
+  blogslist:{}
 };
 
 export default function Main(state = initialState, action) {
@@ -65,6 +68,18 @@ export default function Main(state = initialState, action) {
       state = {
         ...state,
         showError: action.payload
+      };
+    }
+    case GET_BLOG_CALL: {
+      state = {
+        ...state,
+        blogslist: {}
+      };
+    }
+    case GET_BLOG_SUCCESS: {
+      state = {
+        ...state,
+        blogslist: action.payload
       };
     }
     default:

@@ -1,6 +1,7 @@
 import {
     ADD_POST_CALL, ADD_POST_SUCCESS,ADD_POST_FAIL,GET_POST_SUCCESS,GET_POST_CALL,ADD_USER_UPDATE_CALL, ADD_USER_UPDATE_SUCCESS,ADD_USER_UPDATE_FAIL,
-    GET_PEOPLE_SUCCESS,GET_PEOPLE_CALL,SEND_MESSAGE_CALL, SEND_MESSAGE_SUCCESS,SEND_MESSAGE_FAIL
+    GET_PEOPLE_SUCCESS,GET_PEOPLE_CALL,SEND_MESSAGE_CALL, SEND_MESSAGE_SUCCESS,SEND_MESSAGE_FAIL,GET_BLOG_SUCCESS,
+    GET_BLOG_CALL
 } from '../constants'
 
 
@@ -96,6 +97,17 @@ export default class Actions {
         return {
             type: SEND_MESSAGE_FAIL,
             payload: data
+        }
+    }
+    static getBlogCall(){
+        return{
+            type: GET_BLOG_CALL
+        }
+    }
+    static getBlogSuccess(data){
+        return{
+            type: GET_BLOG_SUCCESS,
+            payload:data
         }
     }
 }
