@@ -76,7 +76,7 @@ export default class AuthMiddleware {
         return  (dispatch) => {
             dispatch(AuthActions.LogoutCall())
             firebase.auth().signOut().then((SC)=>{
-                firebase.database().ref('/users/').child(user.uid).set({active:false })
+                firebase.database().ref(`/users/${user.uid}/`).set({...user,active:false })
                 localStorage.setItem('user','{}')
                 localStorage.setItem('isAuthenticated',false)
             dispatch(AuthActions.LogoutSuccess())
