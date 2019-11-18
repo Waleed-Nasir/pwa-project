@@ -65,7 +65,7 @@ class Profile extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { myadds, uid, name, email, dob, number, tag, skill, address, bio, profileImage,gender } = this.state
-        let data = { myadds: myadds ? myadds : {}, uid, gender:gender,Name: name, email, dob, number, tag, skill, address, bio, profileImage }
+        let data = { myadds: myadds ? myadds : {}, uid, gender:gender,Name: name, email, dob, number,active:true, tag, skill, address, bio, profileImage }
         this.props.Update(data)
 
     }
