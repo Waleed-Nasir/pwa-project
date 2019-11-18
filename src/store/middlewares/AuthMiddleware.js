@@ -32,12 +32,12 @@ export default class AuthMiddleware {
             dispatch(AuthActions.SignInCall())
             await  firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
                 localStorage.setItem('UID',user.user.uid)
-                firebase.database().ref('/users/').child(user.user.uid).set({active:true })
                 firebase.database().ref(`users/${user.user.uid}`).on('value',async (usern) => {
                     let data = await usern.val()
                     // data = Object.values(data)
                     localStorage.setItem('user',JSON.stringify(data))
                     localStorage.setItem('isAuthenticated',true)
+                    firebase.database().ref(`/users/${data.uid}/`).set({...data,active:true })
                     dispatch(AuthActions.SignInSuccess({data,message:'Sigin Success full'}))
                 })
             }

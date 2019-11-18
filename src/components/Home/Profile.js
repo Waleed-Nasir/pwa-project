@@ -21,7 +21,8 @@ class Profile extends React.Component {
             files: [],
             profileImage: [],
             uid: '',
-            myadds: {}
+            myadds: {},
+            gender:''
         }
     }
     componentWillReceiveProps = (newProps) => {
@@ -36,9 +37,9 @@ class Profile extends React.Component {
     }
     componentWillMount = () => {
         const { user } = this.props
-        const { Name, email, dob, number, tag, skill, address, bio, profileImage, uid, myadds } = user
+        const { Name, email, dob, number, tag, skill, address, bio, profileImage, uid, myadds ,gender} = user
         this.setState({
-            name: Name, email, dob: dob ? dob : '', number: number ? number : '', tag: tag ? tag : '', skill: skill ? skill : '', address: address ? address : ''
+            gender:gender? gender:'',  name: Name, email, dob: dob ? dob : '', number: number ? number : '', tag: tag ? tag : '', skill: skill ? skill : '', address: address ? address : ''
             , bio: bio ? bio : '', profileImage: profileImage ? profileImage : false, uid: uid ? uid : '', myadds: myadds ? myadds : {}
         })
     }
@@ -64,7 +65,7 @@ class Profile extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { myadds, uid, name, email, dob, number, tag, skill, address, bio, profileImage,gender } = this.state
-        let data = { myadds: myadds ? myadds : {}, uid, gender,Name: name, email, dob, number, tag, skill, address, bio, profileImage }
+        let data = { myadds: myadds ? myadds : {}, uid, gender:gender,Name: name, email, dob, number, tag, skill, address, bio, profileImage }
         this.props.Update(data)
 
     }
