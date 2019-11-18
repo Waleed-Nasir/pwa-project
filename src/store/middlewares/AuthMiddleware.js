@@ -16,7 +16,8 @@ export default class AuthMiddleware {
                     email,
                     password,
                     uid:user.user.uid,
-                    active:true
+                    active:true,
+                    gender:''
                 })
                 localStorage.setItem('user',JSON.stringify({ email, Name,uid:user.user.uid}))
                 dispatch(AuthActions.SignUpSuccess({message:'SignUp Success full'}))

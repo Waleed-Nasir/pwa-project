@@ -49,8 +49,8 @@ class Peoples extends React.Component {
     var mapData = Object.values(people).filter((data) =>
     (data.uid !== user.uid)&&
     (active !== 'all' ? Boolean(data.active) === (active === 'false'||false?false:true) : true)&&
-      (gender !== 'both' ? data.gender.toUpperCase() === gender.toUpperCase() : true) &&
-      (age > 0 ? data.dob ? age == this.calculateAge(new Date(data.dob)) : true : true) && data.address.toUpperCase().includes(city.toUpperCase()))
+      (gender !== 'both' ? data&&data.gender?data.gender.toUpperCase() === gender.toUpperCase():true : true) &&
+      (age > 0 ? data.dob ? age == this.calculateAge(new Date(data.dob)) : true : true) &&data&&data.address? data.address.toUpperCase().includes(city.toUpperCase()):true)
     console.log('mp', mapData, city, age, noPreference, gender, active)
     return (
       <NoSSR key="1">
